@@ -1,0 +1,20 @@
+{
+  "title": "The Shape of the Threat",
+  "seed_material": "The-Shape-of-the-Threat",
+  "seed": 1623370500,
+  "pool_size": 14,
+  "drawn_index": 10,
+  "drawn_style": "vintage NASA poster",
+  "style_interpretation": "Vintage NASA poster: flat fields, one accent, a horizon line and a single astronomical subject, with technical type set over the plate.",
+  "draw_order": [
+    "space gradient",
+    "milky way band",
+    "star field",
+    "sun glow",
+    "asteroid range-Doppler image",
+    "lunar horizon",
+    "surface rim light",
+    "array nodes and baseline",
+    "dust scatter"
+  ]
+}
