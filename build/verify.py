@@ -625,6 +625,20 @@ def main() -> int:
     gate("Index marks outside the formulae", not in_maths,
          f"{len(in_maths)} found" + (f": {in_maths[:4]}" if in_maths else ""))
 
+    # ----------------------------------------------------------------------
+    # The figures.  Fourteen charts, and the question a reader asks of every
+    # one of them is whether the labels collide.  build/check_fig_overlaps.py
+    # measures that in display coordinates.
+    # ----------------------------------------------------------------------
+    proc = subprocess.run(
+        [sys.executable, os.path.join(ROOT, "build", "check_fig_overlaps.py")],
+        capture_output=True, text=True)
+    fig_lines = [ln for ln in proc.stdout.splitlines() if ln.startswith("[FAIL]")]
+    fig_ok = proc.returncode == 0
+    gate("Figure label overlaps", fig_ok,
+         "none" if fig_ok else f"{len(fig_lines)} found: "
+         + ("; ".join(ln[7:60] for ln in fig_lines[:3])))
+
 
 
 

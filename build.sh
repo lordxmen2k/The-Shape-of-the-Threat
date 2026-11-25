@@ -42,6 +42,7 @@ PY
 # 3. figures: fourteen computed charts, then the generated appendix tables.
 # One generator per artefact, so that no stale copy can overwrite a good one.
 python3 build/make_figures.py >/dev/null || echo "WARNING: make_figures.py failed"
+python3 build/check_fig_overlaps.py >/dev/null 2>&1 || echo "WARNING: a figure has overlapping labels"
 python3 build/make_appendix_tables.py >/dev/null || echo "WARNING: make_appendix_tables.py failed"
 
 # 4. typeset
