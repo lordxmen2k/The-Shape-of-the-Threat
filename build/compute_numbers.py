@@ -416,6 +416,41 @@ def energy_uncertainty_factor(d_frac, rho_frac):
 # ============================================================================
 # MAIN
 # ============================================================================
+def bottke_2036_rows():
+    """Bottke et al. 2013 (arXiv:1301.1607), Table 5.
+
+    The 2036 Apophis keyhole impact probabilities for the nominal case and
+    for six perturbations.  The keyhole width is 616.16 m.  These are
+    published values, not derived ones; the figures and the book both read
+    them from here so that neither can drift.
+    """
+    return [
+        ("Nominal", 7.07e-9),
+        ("Diameter 270 +/- 60 m", 3.06e-6),
+        ("Unif. cos gamma", 2.67e-9),
+        ("Symm. cos gamma", 1.64e-9),
+        ("sigma_rho^2 = 0.6", 6.60e-7),
+        ("mu_d0 = 200", 1.58e-9),
+        ("mu_d0 = 400", 1.59e-8),
+    ]
+
+
+def yr4_model_set():
+    """The published thermophysical model set for 2024 YR4.
+
+    Diameter in metres, density in kg/m^3, as tabulated in the sources
+    carried in the ledger.
+    """
+    return [
+        ("NEATM (beaming 3.06, rejected)", 60.6, 2800.0),
+        ("FRM (fast-rotating)", 51.1, 2800.0),
+        ("TPM (thermophysical)", 60.8, 2800.0),
+        ("TPM, rubble pile rho=1300", 60.8, 1300.0),
+        ("FRM, rubble pile rho=1300", 51.1, 1300.0),
+        ("TPM, monolithic rho=3500", 60.8, 3500.0),
+    ]
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", action="store_true")
@@ -532,10 +567,11 @@ def main():
             emit(f"    {D:5.0f} {d:6.2f} {theta/ARCSEC*1000:11.2f} "
                  f"{l_over_t:15.0f} {b4:13.0f} {b7:13.0f}")
     emit("  CAPS's own 100 m design point corresponds to N = 0.45 for a 50 m")
-    emit("  object at 0.2 AU: the target is unresolved and the instrument is an")
-    emit("  ASTROMETRIC CENTROID, not a shape imager.  The lunar surface can")
-    emit("  host the required kilometre-scale array; it cannot host a 100 m")
-    emit("  one and call it shape imaging.")
+    emit("  object at 0.1 AU, and N = 0.22 at 0.2 AU: the target is")
+    emit("  unresolved in both cases and the instrument is an ASTROMETRIC")
+    emit("  CENTROID, not a shape imager.  The lunar surface can host the")
+    emit("  required kilometre-scale array; it cannot host a 100 m one and")
+    emit("  call it shape imaging.")
     out["shape_imaging_baselines"] = shape_rows
 
     emit()
@@ -613,14 +649,7 @@ def main():
     emit("-" * 78)
     v_impact = 14.1      # km/s, arXiv:2601.10666
     emit(f"  impact speed v = {v_impact} km/s")
-    models = [
-        ("NEATM (beaming 3.06, rejected)", 60.6, 2800.0),
-        ("FRM (fast-rotating)", 51.1, 2800.0),
-        ("TPM (thermophysical)", 60.8, 2800.0),
-        ("TPM, rubble pile rho=1300", 60.8, 1300.0),
-        ("FRM, rubble pile rho=1300", 51.1, 1300.0),
-        ("TPM, monolithic rho=3500", 60.8, 3500.0),
-    ]
+    models = yr4_model_set()
     chain = []
     for label, D, rho in models:
         e = energy_mt(D, rho, v_impact)
@@ -694,15 +723,7 @@ def main():
     emit("7. THE APOPHIS 2036 KEYHOLE - PHYSICAL CHARACTERISATION DOMINATES")
     emit("-" * 78)
     emit("  Bottke et al. 2013 (arXiv:1301.1607), Table 5, 2036 keyhole width 616.16 m:")
-    bottke = [
-        ("Nominal", 7.07e-9),
-        ("Diameter 270 +/- 60 m", 3.06e-6),
-        ("Unif. cos gamma", 2.67e-9),
-        ("Symm. cos gamma", 1.64e-9),
-        ("sigma_rho^2 = 0.6", 6.60e-7),
-        ("mu_d0 = 200", 1.58e-9),
-        ("mu_d0 = 400", 1.59e-8),
-    ]
+    bottke = bottke_2036_rows()
     for label, ip in bottke:
         emit(f"    {label:24s} IP_2036 = {ip:.3e}   "
              f"factor vs nominal = {ip/7.07e-9:9.1f}x")

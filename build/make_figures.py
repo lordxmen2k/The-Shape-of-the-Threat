@@ -34,6 +34,7 @@ Output: vector PDF into ../figures/
 import json
 import pathlib
 import sys
+import warnings
 
 import matplotlib
 matplotlib.use("Agg")
@@ -81,12 +82,20 @@ W = 4.6
 LAM = 750e-9
 AU = CN.AU_M
 
+# When SAVE is False the figures are built but not written, which is how
+# build/check_fig_overlaps.py inspects them without touching the output.
+SAVE = True
+BUILT = []          # (figure, filename) pairs, for the overlap checker
+
 
 def finish(fig, name):
-    path = OUT / name
-    fig.savefig(path, format="pdf", bbox_inches="tight", pad_inches=0.02)
-    plt.close(fig)
-    print("wrote", path.name)
+    BUILT.append((fig, name))
+    if SAVE:
+        path = OUT / name
+        fig.savefig(path, format="pdf", bbox_inches="tight", pad_inches=0.02)
+        plt.close(fig)
+        print("wrote", path.name)
+    return fig
 
 
 def style(ax, title, xlabel, ylabel, grid_axis="both"):
@@ -97,6 +106,24 @@ def style(ax, title, xlabel, ylabel, grid_axis="both"):
     ax.set_axisbelow(True)
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
+
+
+def tight(fig, pad=0.6, rect=None):
+    """tight_layout, with matplotlib's gridspec warning silenced.
+
+    Several figures set wspace on their gridspec, because the panels need
+    a wider gap than matplotlib's default.  That makes matplotlib decline
+    to lay the figure out itself and warn about it.  The layout is not
+    assumed here: build/check_fig_overlaps.py measures every figure
+    geometrically and fails the build on a collision.
+    """
+    with warnings.catch_warnings():
+        warnings.filterwarnings(
+            "ignore", message=".*not compatible with tight_layout.*")
+        if rect is None:
+            fig.tight_layout(pad=pad)
+        else:
+            fig.tight_layout(pad=pad, rect=rect)
 
 
 # =====================================================================
@@ -135,7 +162,7 @@ def fig_catalogue():
     ax2.legend(frameon=False, fontsize=6.4)
     ax2.set_ylim(0, 3800)
 
-    fig.tight_layout(pad=0.6)
+    tight(fig, pad=0.6)
     finish(fig, "fig_catalogue.pdf")
 
 
@@ -152,27 +179,31 @@ def fig_accountability():
     cap = CN.campaigns_per_year(sweep)
 
     fig, (ax, ax2) = plt.subplots(1, 2, figsize=(W, 2.6),
-                                  gridspec_kw={"wspace": 0.50,
+                                  gridspec_kw={"wspace": 0.62,
                                                "width_ratios": [1.0, 1.1]})
 
     ax.barh([0], [with_spec], color=AMBER, height=0.38)
     ax.barh([0], [without], left=[with_spec], color=PANEL, height=0.38,
             edgecolor=EDGE)
-    ax.text(with_spec / 2, 0.30, f"{with_spec:,.0f}", ha="center", color=TXT,
-            fontsize=6.8)
-    ax.text(with_spec / 2, -0.36, "a spectrum", ha="center", color=AMBER,
-            fontsize=6.0)
-    ax.text(with_spec + without / 2, 0.30, f"{without:,.0f}", ha="center",
-            color=TXT, fontsize=6.8)
-    ax.text(with_spec + without / 2, -0.36, "no physical account",
-            ha="center", color=TXTDIM, fontsize=6.0)
     ax.set_xlim(0, n140 * 1.02)
     ax.set_ylim(-0.62, 0.72)
     ax.set_yticks([])
     style(ax, f"The 140 m class: {n140:,} objects", "objects in the catalogue",
           "", grid_axis="x")
-    ax.text(0.0, -0.58, "under 1 % imaged with radar",
-            color=RED, fontsize=6.0)
+    # The counts and the two accounts are carried by the legend rather than
+    # by labels on the bar: the spectrum segment is too narrow to hold them.
+    handles = [
+        plt.Rectangle((0, 0), 1, 1, color=AMBER),
+        plt.Rectangle((0, 0), 1, 1, facecolor=PANEL, edgecolor=EDGE),
+    ]
+    ax.legend(handles,
+              [f"{with_spec:,.0f} with a spectrum",
+               f"{without:,.0f} with no account"],
+              frameon=False, fontsize=6.0, loc="upper center",
+              bbox_to_anchor=(0.5, 1.0), labelspacing=0.45,
+              handlelength=1.2, handleheight=0.8)
+    ax.text(0.02, 0.03, "under 1 % imaged with radar",
+            transform=ax.transAxes, color=RED, fontsize=6.0)
 
     labels = ["new objects\nper year", "station\ncampaigns", "objects to\naccount for"]
     values = [rate, cap, n140]
@@ -191,7 +222,7 @@ def fig_accountability():
     ax2.text(1.44, np.sqrt(cap * n140), f"{n140 / cap:.0f} years",
              color=AMBER, fontsize=6.4, va="center", rotation=90)
 
-    fig.tight_layout(pad=0.6)
+    tight(fig, pad=0.6)
     finish(fig, "fig_accountability.pdf")
 
 
@@ -207,11 +238,11 @@ def fig_shape_baseline():
                 label=f"{D:.0f} m diameter")
         ax.plot(d_au, 7.0 * LAM / theta, lw=0.7, color=colour, ls=":", alpha=0.7)
     ax.axhline(100.0, color=RED, lw=1.0, ls="--")
-    ax.text(0.0225, 62, "100 m: the baseline in the concept literature",
-            color=RED, fontsize=6.4)
+    ax.text(1.42, 118, "100 m: the baseline in the concept literature",
+            color=RED, fontsize=6.4, ha="right", va="bottom")
     ax.axhline(300.0, color=GREEN, lw=1.0, ls="--")
-    ax.text(0.0225, 205, "300 m: the lower end of the proposed lunar array",
-            color=GREEN, fontsize=6.4)
+    ax.text(1.45, 340, "300 m: the lower end of the lunar array",
+            color=GREEN, fontsize=6.4, ha="right", va="bottom")
     ax.set_xscale("log")
     ax.set_yscale("log")
     ax.set_xlim(0.02, 1.5)
@@ -221,7 +252,7 @@ def fig_shape_baseline():
     ax.legend(frameon=False, fontsize=6.6, loc="upper left")
     ax.text(0.9, 26, "dotted: seven samples", color=TXTDIM, fontsize=6.2)
 
-    fig.tight_layout(pad=0.5)
+    tight(fig, pad=0.5)
     finish(fig, "fig_shape_baseline.pdf")
 
 
@@ -229,15 +260,33 @@ def fig_shape_baseline():
 #  4.  Samples across the diameter against baseline
 # =====================================================================
 def fig_samples():
-    fig, ax = plt.subplots(figsize=(W, 2.4))
+    fig, ax = plt.subplots(figsize=(W, 2.6))
     d_au = np.logspace(np.log10(0.02), np.log10(1.5), 200)
     for D, colour in ((50.0, TXTDIM), (60.0, ACCENT), (140.0, AMBER)):
         theta = D / (d_au * AU)
         for B, ls, lw in ((100.0, "--", 0.9), (1500.0, "-", 1.3)):
             ax.plot(d_au, theta * B / LAM, lw=lw, color=colour, ls=ls)
     ax.axhline(4.0, color=GREEN, lw=1.0)
-    ax.text(0.023, 4.9, "four samples: the condition calibrated on 3 Juno",
-            color=GREEN, fontsize=6.4)
+
+    # The concept study's own design point: a 100 m baseline at a 50 m
+    # object at 0.1 AU.  N = 0.45 there; at 0.2 AU it is 0.22.  Both come
+    # from compute_numbers.py, and the pair quoted here is the one the
+    # generator prints.
+    n_design = 50.0 * 100.0 / (0.1 * AU * LAM)
+    ax.plot([0.1], [n_design], "o", ms=4.0, color=RED)
+
+    # The four-sample condition, labelled in the band beyond the point where
+    # every curve has dropped below it.
+    ax.text(1.45, 5.6, "N = 4: the shape condition\ncalibrated on 3 Juno",
+            color=GREEN, fontsize=6.2, ha="right", va="bottom")
+
+    # The design point, labelled in the empty lower-left corner.
+    ax.annotate("the concept design point:\n50 m at 0.1 AU, N = 0.45",
+                xy=(0.1, n_design), xytext=(0.021, 0.055),
+                color=RED, fontsize=6.2, ha="left", va="bottom",
+                arrowprops=dict(arrowstyle="->", color=RED, lw=0.7,
+                                shrinkA=2, shrinkB=3))
+
     ax.set_xscale("log")
     ax.set_yscale("log")
     ax.set_xlim(0.02, 1.5)
@@ -246,12 +295,9 @@ def fig_samples():
           "N = diameter x baseline / wavelength")
     ax.plot([], [], color=TXTDIM, ls="--", label="100 m baseline")
     ax.plot([], [], color=TXTDIM, ls="-", label="1.5 km baseline")
-    ax.legend(frameon=False, fontsize=6.4, loc="upper left")
-    ax.text(0.5, 0.055, "the concept design point: 50 m at 0.2 AU,\n"
-                        "100 m baseline, N = 0.45",
-            color=RED, fontsize=6.4, ha="center")
+    ax.legend(frameon=False, fontsize=6.4, loc="upper right")
 
-    fig.tight_layout(pad=0.5)
+    tight(fig, pad=0.5)
     finish(fig, "fig_samples.pdf")
 
 
@@ -259,22 +305,27 @@ def fig_samples():
 #  5.  The mid-infrared channel, closed twice
 # =====================================================================
 def fig_mir():
-    fig, (ax, ax2) = plt.subplots(1, 2, figsize=(W, 2.3))
+    fig, (ax, ax2) = plt.subplots(1, 2, figsize=(W, 2.4),
+                                  gridspec_kw={"wspace": 0.42})
     r_au = np.linspace(0.2, 1.5, 200)
     fg = CN.planck_radiance_um(10.0, 390.0)
     contrast = np.array([CN.planck_radiance_um(10.0, 278.0 / np.sqrt(r)) / 4.0 / fg
                          for r in r_au])
     ax.plot(r_au, contrast, lw=1.5, color=ACCENT)
     ax.axhline(1.0, color=RED, lw=1.0, ls="--")
-    ax.text(0.23, 1.25, "sunlit ground as bright as the target",
+    ax.text(0.23, 1.25, "sunlit ground as bright\nas the target",
             color=RED, fontsize=6.4)
     ax.set_ylim(0, 1.6)
-    style(ax, "Target disk against sunlit regolith at 10 $\\mu$m",
-          "heliocentric distance (AU)", "contrast")
-    for r, c in ((0.3, 0.61), (0.5, 0.26), (1.0, 0.056), (1.3, 0.027)):
+    style(ax, "Target against sunlit regolith", "heliocentric distance (AU)",
+          "contrast")
+    # The four marked contrasts are computed, never typed in.  Each label
+    # sits above and to the right of its point, which is clear of the
+    # descending curve.
+    for r in (0.3, 0.5, 1.0, 1.3):
+        c = CN.planck_radiance_um(10.0, 278.0 / np.sqrt(r)) / 4.0 / fg
         ax.plot([r], [c], "o", ms=3.4, color=ACCENT)
         ax.annotate(f"{c:.3f}", (r, c), textcoords="offset points",
-                    xytext=(5, -8), color=TXT, fontsize=6.2)
+                    xytext=(5, 6), color=TXT, fontsize=6.2, va="bottom")
 
     sb03 = CN.planck_radiance_um(10.0, 278.0 / np.sqrt(0.3)) / 4.0
     tb = np.linspace(25, 400, 200)
@@ -283,15 +334,16 @@ def fig_mir():
     ax2.axhline(1.0, color=RED, lw=1.0, ls="--")
     ax2.set_yscale("log")
     ax2.set_xlim(25, 400)
-    ax2.set_ylim(1e-6, 100)
-    style(ax2, "Baffle radiance against the target disk",
-          "baffle temperature (K)", "relative to the target at 0.3 AU")
-    for t, c in ((390.0, 1.6), (250.0, 0.2), (40.0, 1e-13)):
+    ax2.set_ylim(1e-17, 100)
+    style(ax2, "Baffle against the target disk",
+          "baffle temperature (K)", "relative to the target")
+    for t, off, ha in ((390.0, (-6, 8), "right"), (40.0, (6, -6), "left")):
+        c = CN.planck_radiance_um(10.0, t) / sb03
         ax2.plot([t], [c], "o", ms=3.4, color=AMBER)
         ax2.annotate(f"{t:.0f} K", (t, c), textcoords="offset points",
-                     xytext=(6, 2), color=TXT, fontsize=6.2)
+                     xytext=off, ha=ha, va="center", color=TXT, fontsize=6.2)
 
-    fig.tight_layout(pad=0.6)
+    tight(fig, pad=0.6)
     finish(fig, "fig_mir.pdf")
 
 
@@ -323,7 +375,7 @@ def fig_energy_ladder():
     style(ax, "Uncertainty remaining in the impact energy",
           "factor of uncertainty in E", "", grid_axis="x")
 
-    fig.tight_layout(pad=0.5)
+    tight(fig, pad=0.5)
     finish(fig, "fig_energy_ladder.pdf")
 
 
@@ -339,7 +391,7 @@ def fig_two_station():
     # range directly, so the parallax construction is not needed at all.
     ax.axvspan(1.5e-4, b_au, color=PANEL, zorder=0)
     ax.axvline(b_au, color=RED, lw=1.0, ls="--")
-    ax.text(b_au * 1.12, 2.0e5,
+    ax.text(b_au * 1.12, 1.3e5,
             "inside the baseline length:\nthe Moon's ephemeris gives the range",
             color=RED, fontsize=6.0, ha="left")
 
@@ -351,20 +403,23 @@ def fig_two_station():
         ax.plot(d, err / 1000.0, lw=1.4, color=colour, ls=ls,
                 label=f"{sig_mas:g} mas")
 
-    # The three documented close approaches.
-    inside = [("Apophis 2029, 38,011 km", 38011e3, (4, -11)),
-              ("2019 OK, 71,355 km", 71355e3, (4, 11))]
+    # The three documented close approaches.  Their labels sit in the empty
+    # region inside the baseline length, and are staggered so that neither
+    # touches the other, a marker or a curve.
+    inside = [("Apophis 2029\n38,011 km", 38011e3, (8, -22)),
+              ("2019 OK\n71,355 km", 71355e3, (0, 20))]
     for label, rng, off in inside:
         ax.plot([rng / AU], [1e-2], "o", ms=4.0, color=GREEN)
         ax.annotate(label, (rng / AU, 1e-2), textcoords="offset points",
-                    xytext=off, color=TXT, fontsize=6.0)
+                    xytext=off, color=TXT, fontsize=6.0, ha="center",
+                    va="center")
     rng = 828775e3
     err = CN.two_station_range_error_m(rng, 1.0 / 1000.0 * CN.ARCSEC,
                                        CN.EARTH_MOON) / 1000.0
     ax.plot([rng / AU], [err], "o", ms=4.4, color=ACCENT)
     ax.annotate("2024 YR4, 828,775 km\n8.66 m at 1 mas", (rng / AU, err),
-                textcoords="offset points", xytext=(9, -26),
-                color=TXT, fontsize=6.0)
+                textcoords="offset points", xytext=(46, -20), ha="center",
+                va="center", color=TXT, fontsize=6.0)
 
     ax.set_xscale("log")
     ax.set_yscale("log")
@@ -375,7 +430,7 @@ def fig_two_station():
     ax.legend(frameon=False, fontsize=6.4, loc="upper left",
               bbox_to_anchor=(0.02, 0.99))
 
-    fig.tight_layout(pad=0.5)
+    tight(fig, pad=0.5)
     finish(fig, "fig_two_station.pdf")
 
 
@@ -383,42 +438,53 @@ def fig_two_station():
 #  8.  The 2024 YR4 energy spread and the threshold it moves
 # =====================================================================
 def fig_yr4():
-    models = [("NEATM\nrejected", 60.6, 2800.0), ("FRM", 51.1, 2800.0),
-              ("TPM", 60.8, 2800.0), ("TPM\nrubble pile", 60.8, 1300.0),
-              ("TPM\nmonolith", 60.8, 3500.0)]
-    fig, (ax, ax2) = plt.subplots(1, 2, figsize=(W, 2.4))
+    models = CN.yr4_model_set()
+    short = ["NEATM\nrejected", "FRM", "TPM", "TPM\nrho 1300",
+             "FRM\nrho 1300", "TPM\nrho 3500"]
+    fig, (ax, ax2) = plt.subplots(1, 2, figsize=(W, 2.5),
+                                  gridspec_kw={"wspace": 0.55,
+                                               "width_ratios": [1.35, 1.0]})
     energies = [CN.energy_mt(d, r, 14.1) for _, d, r in models]
     xs = np.arange(len(models))
     bars = ax.bar(xs, energies, width=0.6,
-                   color=[RED, ACCENT, GREEN, TXTDIM, TXTDIM])
+                   color=[RED, ACCENT, GREEN, TXTDIM, TXTDIM, TXTDIM])
     ax.set_xticks(xs)
-    ax.set_xticklabels([m[0] for m in models], fontsize=5.9)
-    style(ax, "Published impact energy for 2024 YR4", "",
-          "energy (Mt)")
-    for bar, e, (_, d, _) in zip(bars, energies, models):
+    ax.set_xticklabels(short, fontsize=5.7)
+    style(ax, "Impact energy, 2024 YR4", "", "energy (Mt)")
+    ax.set_xlabel("rho is the bulk density in kg/m3", fontsize=6.2,
+                  color=TXTDIM, labelpad=2)
+    for bar, e in zip(bars, energies):
         ax.text(bar.get_x() + bar.get_width() / 2, e + 0.25,
                 f"{e:.2f}", ha="center", color=TXT, fontsize=6.2)
-    ax.set_ylim(0, 12)
-    ax.annotate("", xy=(2.2, 2.16), xytext=(2.2, 9.79),
+    ax.set_ylim(0, 14)
+
+    # The spread across the published model set, from the lowest bar to the
+    # highest.  Both ends are bars that are actually drawn.
+    e_lo, e_hi = min(energies), max(energies)
+    ax.annotate("", xy=(5.42, e_lo), xytext=(5.42, e_hi),
                 arrowprops=dict(arrowstyle="<->", color=RED, lw=0.9))
-    ax.text(2.35, 5.5, "factor 4.5\nfrom model choice alone",
-            color=RED, fontsize=6.2)
+    ax.text(5.38, 11.4, f"factor {e_hi / e_lo:.1f}\nfrom model choice alone",
+            color=RED, fontsize=6.2, va="bottom", ha="right")
 
     p1 = [(lab, 10.0 ** (-7.0 / 3.0) / CN.energy_mt(d, r, 14.1))
           for lab, d, r in models]
     p1.sort(key=lambda z: z[1])
-    labs = [p[0].replace("\n", " ") for p in p1]
+    short_y = ["NEATM", "FRM", "TPM", "TPM 1300", "FRM 1300", "TPM 3500"]
+    key = {m[0]: s for m, s in zip(models, short_y)}
+    labs = [key[p[0]] for p in p1]
     vals = [p[1] for p in p1]
     ax2.barh(np.arange(len(vals)), vals, height=0.55,
              color=[ACCENT if v > 1.5e-3 else TXTDIM for v in vals])
     ax2.set_yticks(np.arange(len(vals)))
-    ax2.set_yticklabels(labs, fontsize=5.9)
+    ax2.set_yticklabels(labs, fontsize=5.7)
     ax2.set_xscale("log")
-    style(ax2, "Probability needed for a Torino Level 1", "", "p", grid_axis="x")
+    style(ax2, "Probability for Torino Level 1", "", "p",
+          grid_axis="x")
+    ax2.set_xlim(min(vals) * 0.5, max(vals) * 3.0)
     for i, v in enumerate(vals):
         ax2.text(v * 1.25, i, f"{v:.2e}", va="center", color=TXT, fontsize=6.0)
 
-    fig.tight_layout(pad=0.6)
+    tight(fig, pad=0.6)
     finish(fig, "fig_yr4.pdf")
 
 
@@ -426,28 +492,46 @@ def fig_yr4():
 #  9.  The 2036 keyhole magnifies physical error
 # =====================================================================
 def fig_keyhole():
-    bottke = CN.bottke if hasattr(CN, "bottke") else None
-    rows = [("Nominal", 7.07e-9), ("Diameter 270 +/- 60 m", 3.06e-6),
-            ("Uniform cos gamma", 2.67e-9), ("Symmetric cos gamma", 1.64e-9),
-            ("Density variance 0.6", 6.60e-7), ("mu_d0 = 200", 1.58e-9),
-            ("mu_d0 = 400", 1.59e-8)]
-    fig, ax = plt.subplots(figsize=(W, 2.5))
+    rows = CN.bottke_2036_rows()
+    labels = ["Nominal", "Diameter 270 +/- 60 m", "Uniform cos gamma",
+              "Symmetric cos gamma", "Density variance 0.6", "mu_d0 = 200",
+              "mu_d0 = 400"]
+    nominal = rows[0][1]
+    fig, ax = plt.subplots(figsize=(W, 2.6))
     y = np.arange(len(rows))[::-1]
     vals = [v for _, v in rows]
-    facs = [v / 7.07e-9 for v in vals]
+    facs = [v / nominal for v in vals]
     colours = [ACCENT if f > 10 else TXTDIM for f in facs]
-    ax.barh(y, facs, height=0.56, color=colours)
+
+    # Each row is drawn as a departure from the nominal case, so that the
+    # perturbations that lower the probability are as visible as the ones
+    # that raise it.  A bar drawn from zero would vanish on a log axis.
+    for yy, f, colour in zip(y, facs, colours):
+        ax.plot([1.0, f], [yy, yy], lw=5.0, color=colour,
+                solid_capstyle="butt")
+        ax.plot([f], [yy], "o", ms=4.0, color=colour)
+
+    ax.axvline(1.0, color=EDGE, lw=1.0, ls="--")
     ax.set_yticks(y)
-    ax.set_yticklabels([r[0] for r in rows], fontsize=6.4)
+    ax.set_yticklabels(labels, fontsize=6.4)
     ax.set_xscale("log")
-    ax.set_xlim(0.5, 3000)
+    ax.set_xlim(0.03, 3000)
+    ax.set_ylim(-0.7, len(rows) - 0.3)
     style(ax, "2036 impact probability against the nominal case",
           "factor by which the probability moves", "", grid_axis="x")
     for yy, f in zip(y, facs):
-        ax.text(f * 1.2, yy, f"{f:,.0f}x", va="center", color=TXT, fontsize=6.6)
-    ax.text(700, y[2], "diameter alone", color=ACCENT, fontsize=6.2)
+        if f >= 1.0:
+            lx, ha = f * 1.35, "left"
+        else:
+            lx, ha = f / 1.8, "right"
+        ax.text(lx, yy, f"{f:,.2f}x" if f < 10 else f"{f:,.0f}x",
+                va="center", ha=ha, color=TXT, fontsize=6.6)
+    ax.text(1.15, -0.45, "the nominal case", color=TXTDIM, fontsize=6.0,
+            va="center", ha="left")
+    ax.text(700, 5.55, "diameter alone", color=ACCENT, fontsize=6.2,
+            va="center", ha="center")
 
-    fig.tight_layout(pad=0.5)
+    tight(fig, pad=0.5)
     finish(fig, "fig_keyhole.pdf")
 
 
@@ -471,9 +555,9 @@ def fig_along_track():
     ax.set_ylim(1, 1e6)
     style(ax, "Along-track error against the astrometric floor",
           "years from the 2025 arc", "along-track error (km)")
-    ax.legend(frameon=False, fontsize=6.4, loc="lower right")
+    ax.legend(frameon=False, fontsize=6.4, loc="upper right")
 
-    fig.tight_layout(pad=0.5)
+    tight(fig, pad=0.5)
     finish(fig, "fig_along_track.pdf")
 
 
@@ -490,7 +574,7 @@ def fig_rotation():
     ax.set_ylim(1, 1e4)
     ax.set_xticks([0, 1])
     ax.set_xticklabels(["Earth\nsky", "Moon\nsky"], fontsize=6.6)
-    style(ax, "Rate at which the sky turns", "", "degrees per day")
+    style(ax, "Rate the sky turns", "", "degrees per day")
     for b, v in zip(bars, [15.0 * 60.0, rate_moon]):
         ax.text(b.get_x() + b.get_width() / 2, v * 1.5,
                 f"{v:,.1f}" + (" deg/hr" if v > 100 else " deg/day"),
@@ -506,9 +590,9 @@ def fig_rotation():
     ax2.axhline(180, color=AMBER, lw=0.9, ls=":")
     ax2.set_xlim(0, 30)
     ax2.set_ylim(0, 200)
-    style(ax2, "Sweep of the baseline orientation", "days", "degrees")
+    style(ax2, "Baseline orientation sweep", "days", "degrees")
 
-    fig.tight_layout(pad=0.6)
+    tight(fig, pad=0.6)
     finish(fig, "fig_rotation.pdf")
 
 
@@ -550,7 +634,7 @@ def fig_sunward():
         ax2.text(b.get_x() + b.get_width() / 2, dd * 1.25, f"{dd:.1f} d",
                  ha="center", color=TXT, fontsize=6.4)
 
-    fig.tight_layout(pad=0.6)
+    tight(fig, pad=0.6)
     finish(fig, "fig_sunward.pdf")
 
 
@@ -558,7 +642,7 @@ def fig_sunward():
 #  13.  The scale comparison: what was achieved, what is required
 # =====================================================================
 def fig_scale():
-    fig, ax = plt.subplots(figsize=(W, 2.5))
+    fig, ax = plt.subplots(figsize=(W, 2.6))
     items = [
         ("Palma, the only asteroid interferometry ever done\n"
          "Earth, radio, 3.6 mm, 1,200 to 2,300 km", 1200, 2300, AMBER),
@@ -576,10 +660,17 @@ def fig_scale():
     ax.set_yticklabels([i[0] for i in items], fontsize=5.9)
     ax.set_xscale("log")
     ax.set_xlim(40, 60000)
-    style(ax, "Baseline scales side by side", "baseline (m)", "",
-          grid_axis="x")
+    ax.set_xlabel("baseline (m)")
+    ax.grid(True, axis="x", lw=0.4, alpha=0.55)
+    ax.set_axisbelow(True)
+    for side in ("top", "right"):
+        ax.spines[side].set_visible(False)
+    # The title spans the whole figure: the long row labels push the axes
+    # to the right, so an axes-level title would sit over the right half.
+    fig.suptitle("Baseline scales side by side", fontsize=8.8,
+                 fontweight="bold", color=TXT, y=0.99)
 
-    fig.tight_layout(pad=0.5)
+    tight(fig, pad=0.5, rect=(0, 0, 1, 0.96))
     finish(fig, "fig_scale.pdf")
 
 
@@ -587,47 +678,68 @@ def fig_scale():
 #  14.  The surface brightness of a resolved target
 # =====================================================================
 def fig_brightness():
-    fig, ax = plt.subplots(figsize=(W, 2.4))
-    d_au = np.logspace(np.log10(0.05), np.log10(1.3), 200)
-    for D, colour in ((60.0, ACCENT), (140.0, AMBER)):
-        sb = []
-        for d in d_au:
-            h = CN.absolute_magnitude(D, 0.11)
-            v = CN.apparent_magnitude(h, d, d)
-            s = CN.resolved_surface_brightness(D, d * AU, v)
-            sb.append(s if s else 30.0)
-        ax.plot(d_au, sb, lw=1.5, color=colour,
-                label=f"{D:.0f} m, albedo 0.11")
+    fig, ax = plt.subplots(figsize=(W, 2.5))
+    d_au = np.logspace(np.log10(0.2), np.log10(1.0), 120)
+
+    def sb_of(D, d):
+        h = CN.absolute_magnitude(D, 0.10)
+        v = CN.apparent_magnitude(h, d, d)
+        return CN.resolved_surface_brightness(D, d * AU, v)
+
+    # A resolved disk's surface brightness depends on its distance and its
+    # albedo, not on its diameter, so the 60 m and 140 m curves coincide.
+    # Both are drawn; the 140 m curve is dashed so that it reads through.
+    for D, colour, ls, lw in ((60.0, ACCENT, "-", 2.2), (140.0, AMBER, "--", 1.2)):
+        ax.plot(d_au, [sb_of(D, d) for d in d_au], lw=lw, color=colour, ls=ls,
+                label=f"{D:.0f} m, albedo 0.10")
+
     ax.axhline(22.0, color=RED, lw=1.0, ls="--")
-    ax.text(0.058, 21.2, "zodiacal light, about 22 mag per square arcsecond",
-            color=RED, fontsize=6.2)
+    ax.text(0.205, 21.6, "zodiacal light, about 22 mag per square arcsecond",
+            color=RED, fontsize=6.2, va="bottom")
+    ax.text(0.225, 12.0, "the two curves coincide: a resolved disk's surface\n"
+                          "brightness depends on its distance and albedo, not on\n"
+                          "its diameter",
+            color=TXTDIM, fontsize=6.0, ha="left", va="center")
+
+    for d in (0.2, 1.0):
+        s = sb_of(60.0, d)
+        ax.plot([d], [s], "o", ms=3.6, color=TXT)
+        ax.annotate(f"{s:.2f}", (d, s), textcoords="offset points",
+                    xytext=(-6, -9) if d > 0.5 else (6, -9), ha="right" if d > 0.5 else "left",
+                    color=TXT, fontsize=6.4)
+
     ax.set_xscale("log")
-    ax.set_xlim(0.05, 1.3)
-    ax.set_ylim(10, 30)
+    ax.set_xlim(0.19, 1.03)
+    ax.set_xticks([0.2, 0.3, 0.5, 0.7, 1.0])
+    ax.set_xticklabels(["0.2", "0.3", "0.5", "0.7", "1.0"])
+    ax.set_ylim(24.0, -1.0)
     style(ax, "Surface brightness of a resolved disk",
           "geocentric distance (AU)", "mag per square arcsecond")
-    ax.legend(frameon=False, fontsize=6.4, loc="lower left")
-    ax.invert_yaxis()
+    ax.legend(frameon=False, fontsize=6.4, loc="center right")
 
-    fig.tight_layout(pad=0.5)
+    tight(fig, pad=0.5)
     finish(fig, "fig_brightness.pdf")
 
 
+BUILDERS = [
+    fig_catalogue, fig_accountability, fig_shape_baseline, fig_samples,
+    fig_mir, fig_energy_ladder, fig_two_station, fig_yr4, fig_keyhole,
+    fig_along_track, fig_rotation, fig_sunward, fig_scale, fig_brightness,
+]
+
+
+def build_all(save=True):
+    """Build every figure.  With save=False the PDFs are not written."""
+    global SAVE
+    SAVE = save
+    BUILT.clear()
+    for fn in BUILDERS:
+        fn()
+    return list(BUILT)
+
+
 def main():
-    fig_catalogue()
-    fig_accountability()
-    fig_shape_baseline()
-    fig_samples()
-    fig_mir()
-    fig_energy_ladder()
-    fig_two_station()
-    fig_yr4()
-    fig_keyhole()
-    fig_along_track()
-    fig_rotation()
-    fig_sunward()
-    fig_scale()
-    fig_brightness()
+    build_all(save=True)
     print("figures complete")
 
 
