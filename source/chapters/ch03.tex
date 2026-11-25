@@ -1,0 +1,129 @@
+% =====================================================================
+%  Chapter 3 — The Detection Mandate Against the Characterisation Mandate
+% =====================================================================
+
+\chapter{The Detection Mandate Against the Characterisation Mandate}
+\label{ch:mandates}
+
+Two mandates sit inside the planetary-defence establishment, and they are
+funded, staffed and organised separately. The first is to \emph{find}
+near-Earth objects. The second is to \emph{characterise} them. Almost all of
+the hardware, almost all of the observing time and almost all of the
+public attention are on the first side of that line. The second side has no
+automated trigger at all.
+
+That is not a criticism of the discovery effort, which has been extraordinarily
+successful. It is an observation about where the residual risk sits once the
+catalogue is built.
+
+\section{Five clocks, not one}
+
+The phrase "before it is too late" implies a single clock. There are five, and
+they run at very different rates.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{The warning-time chain, and the part of it a lunar surface station
+would touch.}
+\label{tab:clocks}
+\begin{tabularx}{\textwidth}{@{}P{0.72in}P{1.12in}P{0.87in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Stage} & \textbf{Instrument} & \textbf{Clock} & \textbf{Lunar help} \\
+\midrule
+1. Discovery & wide-field optical survey & minutes of alert & partly: near-Sun
+access \\
+\rowcolor{panel}
+2. Orbit and impact probability & astrometry, B-plane & weeks to years & yes: a
+second geometry \\
+3. Characterisation & spectra, radar shape, rotation, mass & the bottleneck &
+yes, and most \\
+\rowcolor{panel}
+4. Mitigation decision & modelling & years & no \\
+5. Deflection & spacecraft & years & no \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Stage 1 is measured in minutes: the alert fires when the survey's astrometric
+solution is good enough for a follow-up to be scheduled. Stage 2 is measured
+in weeks for a short-arc object and in years for one that will return, and it
+is the stage at which the astrometric term dominates for most of the
+relevant horizon. Stage 3 has no fixed clock at all, because it has no
+trigger: it happens when an observer with an idle telescope and an interest
+happens to be pointed at the right object. Stage 4 and stage 5 are outside
+this book's scope, which is deliberate; the endpoint here is accountability,
+not deflection.
+
+\section{The trigger that does not exist}
+
+The most consequential sentence in the 2025 NASA documentation on the
+2024~YR4 episode is a negative one. The planetary-defence coordination
+office and the international warning network were recorded as discussing the
+creation of an automated system, and the documented position was that
+\textbf{no automated system currently alerts physical characterization
+sites}.
+
+The operational consequence was observed in real time. Observers at the
+Infrared Telescope Facility had not learned of the object's Torino Level 1
+status when they were observing it. That is, in the most literal sense, a
+failure to detect: the object was detected, imaged and measured, and the
+people doing so were not in the loop that would have told them the
+measurement mattered.
+
+The same documentation records that an automated alert was exercised
+successfully for a Torino Level 1 event --- 2025~FA22, on 25 April 2025 ---
+which establishes that the trigger is operationally simple rather than
+technically difficult. The 2024~YR4 episode was therefore not a sensing
+failure and not a data-processing failure. It was a routing failure.
+
+\begin{seamnote}{A sensor does not fix a routing failure}
+The owner's original concept carried a beam to Earth, and the instinct behind
+it was good: a link from the risk list to an instrument that can respond. The
+2024~YR4 record says the link was the missing piece, and that an automated
+alert to a characterisation site is the concrete form that the link should
+take. This book therefore treats the beam as an alerting\idx{Alerting} and scheduling path
+rather than as a ranging channel, because the ranging channel turns out to be
+the weaker claim of the two.
+\end{seamnote}
+
+\section{Where the Sun-ward blind zone bites}
+
+Stage 1 is not equally accessible from the ground. A ground telescope cannot
+observe close to the Sun: the atmospheric scattering and the sky background
+rise, and the solar avoidance constraints tighten. Objects arriving from the
+Sun-ward direction are therefore found late or not at all, and this is not a
+hypothetical concern. The 2026 study of near-Earth-object telescopes for
+extreme environments names the historical failures directly: 2008~TC3 and
+2019~OK, and ``multiple other NEAs detected only days before their closest
+approach to Earth''.
+
+The geometry of that disadvantage can be inverted from the published table in
+that study. For a relative velocity of 20~kilometres per second, a 140-metre
+object becomes detectable from a lunar observatory at 0.10 astronomical units
+and about nine days earlier than from the ground; a 30-metre object at
+0.05~astronomical units and four to five days earlier; and a one-kilometre
+object at 0.50~astronomical units and about six weeks earlier. Working
+backwards from the lead times gives the ground limits the table implies:
+about 0.20 astronomical units for the 140-metre class, about 0.10 for the
+30-metre class and about 0.99 for the kilometre class.
+
+Those are the numbers in \figref{fig:sunward} of Chapter 26, and they are the
+discovery-side case for a lunar platform. The lead times are modest, and the
+book does not inflate them. Their significance is not their length but their
+direction: they are the only entry in the table that applies to objects the
+ground structurally cannot reach.
+
+\begin{keytakeaways}
+\item The two mandates are separately funded and separately staffed, and only
+one of them has a trigger.
+\item The documented 2024 YR4 failure was a routing failure: the observers
+were not told the object had reached Level 1.
+\item An automated alert to a characterisation site was exercised
+successfully for 2025 FA22 on 25 April 2025, so the missing link is
+operationally simple.
+\item The stage that actually binds is characterisation, and the Sun-ward
+blind zone is the one part of discovery that a lunar vantage reaches and the
+ground does not.
+\end{keytakeaways}

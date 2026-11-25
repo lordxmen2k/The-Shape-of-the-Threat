@@ -1,0 +1,150 @@
+% =====================================================================
+%  Chapter 13 — The YORP \idxw{Torque}
+% =====================================================================
+
+\chapter{The YORP Torque}
+\label{ch:yorp}
+
+The YORP effect --- Yarkovsky--O'Keefe--Radzievskii, named for the three
+authors whose separate predictions of it turned out to describe the same
+phenomenon --- is the torque\idx{Torque} that a rotating body with a non-uniform surface
+exerts on itself through the anisotropic re-radiation of sunlight. It is the
+mechanism by which a small asteroid's rotation rate changes over decades,
+and it is the channel through which a shape measurement does its most
+direct work on the probability chain.
+
+\section{The mechanism}
+
+Consider a surface element of a rotating body. It is heated as it rotates
+into sunlight and cools as it rotates away. The temperature of that element
+therefore varies through the rotation, and the radiation it emits varies with
+it. The emitted radiation carries momentum, and the momentum is directed
+along the outward normal. Integrating over a surface whose normals are not
+uniformly distributed leaves a net torque.
+
+Three properties of the surface determine the result: the distribution of
+surface normals, the distribution of roughness, and the obliquity. The
+first is what a shape model supplies, and it is why the effect is
+shape-sensitive in a way that the Yarkovsky force is not.
+
+The published scaling, from the same 2012 study, is
+\begin{equation}
+\frac{d\omega}{d t} \propto \frac{1}{\rho_b D^{2}},
+\label{eq:yorp}
+\end{equation}
+with the dependence on the shape and the roughness carried separately. The
+diameter enters as the square, and the density linearly.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{What the YORP timescale means for the small class. The calibration
+object has a torque of \(2.26\times10^{-3}\) radians per year squared.}
+\label{tab:yorp-timescale}
+\begin{tabularx}{\textwidth}{@{}P{0.91in}P{0.88in}P{0.91in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Diameter} & \textbf{Density} & \textbf{Torque ratio} &
+\textbf{Comment} \\
+\midrule
+51 m & 1,300 & \(\times 4{,}827\) & the torque\idx{Torque} on this class is
+enormous relative to the calibration \\
+\rowcolor{panel}
+60.8 m & 1,300 & \(\times 3{,}409\) & the YR4 class \\
+60.8 m & 2,800 & \(\times 1{,}583\) & as above, coherent \\
+\rowcolor{panel}
+140 m & 2,800 & \(\times 299\) & the catalogue's threshold class \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The ratios in \tabref{tab:yorp-timescale} are the size-and-density part
+only, and they are large. A torque\idx{Torque} that would take a 2.5-kilometre object a
+decade to spin up would spin a 60-metre object of the same density in a
+fraction of a year --- which is physically absurd, and is the reason the
+same caveat applies here as in the previous chapter: the full YORP
+expression carries a dependence on the shape and on the spin rate that does
+not scale with the diameter alone, and the book does not extrapolate an
+absolute secular acceleration across two orders of magnitude.
+
+What survives the caveat is the comparative statement, and it is the one
+that matters: \textbf{the YORP torque on the small class is enormously larger
+relative to its calibration than the Yarkovsky drift is}, by a factor of
+roughly fifty in the ratios of \tabref{tab:yorp-timescale} against
+\tabref{tab:rg-ratios}. For the small class, the rotation state is a fast
+variable, and a fast variable is a variable that a characterisation
+campaign has to catch rather than assume.
+
+\section{Why this matters for the book}
+
+Three consequences follow, and they are the reason this chapter exists.
+
+The first is that the spin state is not a slowly varying property that can
+be carried forward from a survey lightcurve. For this class it evolves on a
+timescale shorter than the gap between observing opportunities. A catalogue
+that stores a rotation period measured once is storing a quantity with a
+shelf life.
+
+The second is that the shape enters the probability chain directly. The
+published sensitivity result is that a three per cent error in the diameter
+produces a six per cent error in the YORP torque --- twice the relative
+sensitivity of Yarkovsky --- because the torque depends on the shape
+directly and the drift does not.
+
+The third is the one that connects this chapter to Chapter 7 and to the
+whole architecture. A torque is a vector, and the direction it turns the
+body towards depends on where the mass is. The 2022 study of Apophis's
+rotation through the 2029 encounter found that the encounter is likely to
+change the effective spin rate by up to a factor of two and to shift the
+pole by ten degrees or more, and that these changes are very sensitive to
+the close-approach attitude and the mass distribution. The spin state is
+therefore not merely an input to the torque; it is the \emph{output} of the
+encounter, and it is the observable through which the mass distribution
+becomes measurable.
+
+\begin{seamnote}{The chain closes in a place nobody expected}
+The sequence is: the encounter perturbs the rotation; the change in
+rotation is measured from the ground by photometry and a resolved shape; the
+change in rotation constrains the mass distribution; the mass distribution
+gives the density; the density is the second factor of three in the energy
+relation. Every one of these steps is a measurement that a station at the
+encounter could support, and the last one is the one the catalogue has never
+had.
+\end{seamnote}
+
+\section{What a lightcurve alone can and cannot do}
+
+The lightcurve is the workhorse here, and it is worth being precise about
+what it delivers and where it stops.
+
+It delivers the rotation period, the direction of the spin pole, and a
+low-order shape model, and it does so from a telescope aperture that every
+major observatory already owns. It is cheap, it is fast, and it does not
+require proximity.
+
+It stops at the resolution of the shape. A lightcurve constrains the
+projected outline of the body, and the standard inversion returns the convex
+hull of that constraint. The surface normals that the YORP torque depends on
+are the normals of the body, not of its convex hull, and the difference is
+exactly the concavity that the hull cannot represent.
+
+For a body in this class, with a spin rate that may change by a factor of
+two across a close encounter, the shape resolution is the binding limit on
+the torque. This is not a limitation of the technique; it is a statement
+about what the technique measures. Chapter 17 takes the convex-hull problem
+apart in detail, and Chapter 20 works out what an interferometric
+measurement of the same body would deliver.
+
+\begin{keytakeaways}
+\item YORP depends on the surface normals directly, which is why it is
+genuinely shape-sensitive where Yarkovsky is not.
+\item The published scaling puts the torque on the small class tens to
+hundreds of times the calibration relative to its size and density, and the
+book does not extrapolate an absolute secular acceleration across that
+range.
+\item A three per cent diameter error produces a six per cent YORP error,
+twice the relative sensitivity of Yarkovsky.
+\item The spin state is the output of a close encounter as well as its input,
+and it is the observable through which the mass distribution becomes
+measurable.
+\end{keytakeaways}

@@ -1,0 +1,169 @@
+% =====================================================================
+%  Chapter 12 — The \idxw{Yarkovsky} Drift
+% =====================================================================
+
+\chapter{The Yarkovsky Drift}
+\label{ch:yarkovsky}
+
+A body that is heated unevenly and cooled unevenly does not receive and
+re-emit sunlight symmetrically, and it therefore experiences a small,
+persistent thrust. The effect is called Yarkovsky\idx{Yarkovsky} after the scientist who
+identified it in the nineteenth century, and it is the reason the orbits of
+small asteroids are not closed ellipses.
+
+For a body of this class the effect is not a curiosity. It is the
+accumulated along-track displacement that decides whether a keyhole is hit.
+
+\section{The mechanism}
+
+The body's rotation carries surface elements through the day and night
+cycle. A surface element that is heated and then cools radiates at
+temperatures that depend on when it was last illuminated, and the radiation
+leaves preferentially in the direction normal to the surface. The net recoil
+over a rotation is a small force along the spin axis and a small torque
+about it.
+
+The force depends on the obliquity, on the thermal properties of the surface
+and on the spin rate. Writing it in the form used in the 2012 study of
+Yarkovsky\idx{Yarkovsky} and YORP,
+\begin{equation}
+\frac{d a}{d t} \propto
+\frac{(1-A)\cos\gamma}{\sqrt{a\,\rho_b\,D}}\,
+f(\Theta, \omega),
+\label{eq:yarkovsky}
+\end{equation}
+where \(A\) is the albedo, \(\gamma\) is the angle between the spin axis and
+the ecliptic normal, \(\rho_b\) is the bulk density, \(D\) is the diameter and
+\(\omega\) the rotation rate.
+
+Three of the five terms are physical properties that a characterisation
+campaign measures: the albedo, the bulk density and the diameter. The
+fourth, the spin axis, comes from the lightcurve. The fifth, the thermal
+parameter \(\Theta\), does not.
+
+\section{The thermal parameter, and why the book will not extrapolate it}
+
+The function \(f(\Theta, \omega)\) contains the thermal parameter\idx{Thermal parameter}
+\begin{equation}
+\Theta = \frac{\Gamma\,\omega}{\varepsilon\,\sigma\,T_{\mathrm{SSP}}^{3}},
+\label{eq:theta}
+\end{equation}
+where \(\Gamma\) is a shape-and-latitude factor of order unity,
+\(\varepsilon\) the emissivity, \(\sigma\) the Stefan-Boltzmann constant and
+\(T_{\mathrm{SSP}}\) the temperature of a surface element at the
+steady-state temperature of the sub-solar point. For a body with a low
+thermal inertia, \(T_{\mathrm{SSP}}\propto D^{-1/2}\), so \(\Theta\) grows
+steeply as the body shrinks.
+
+This is the reason the book refuses to extrapolate an absolute drift rate
+across the size range between the calibration object and the class of
+interest. The scaling laws in \eqref{eq:yarkovsky} isolate the explicit size
+and density factor, and that factor can be quoted as a ratio. The thermal
+parameter cannot be scaled that way, because it varies with size through a
+different and stronger dependence.
+
+\begin{deeper}{The rule, and why it exists}
+The 2012 calibration is the asteroid pseudo-Geographos: 2,560 metres in
+diameter, a bulk density of 2,500 kilogrammes per cubic metre, a semimajor
+axis of 1.246 astronomical units, a Yarkovsky\idx{Yarkovsky} drift of 18.1 metres per year
+and a YORP acceleration of \(2.26\times10^{-3}\) radians per year squared.
+Applying the scaling laws to a 60-metre body gives ratios of the order of
+forty to a hundred for the drift and of several hundred to several thousand
+for the torque. Those ratios are the size-and-density part of the effect and
+nothing else. The published absolute drift rates for real objects are used
+wherever an absolute drift appears in this book, and no absolute drift is
+derived by scaling.
+\end{deeper}
+
+\begin{table}[!htbp]
+\centering
+\footnotesize
+\caption{The size-and-density part of the scaling laws, expressed as ratios
+to the pseudo-Geographos calibration. The thermal-parameter factor is
+excluded, and the ratios are therefore lower bounds on the true scaling.}
+\label{tab:rg-ratios}
+\begin{tabularx}{\textwidth}{@{}P{0.99in}P{0.86in}P{0.86in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Diameter and density} & \textbf{Yarkovsky} & \textbf{YORP} &
+\textbf{Comment} \\
+\midrule
+51 m, 1,300 & \(\times 96\) & \(\times 4{,}827\) & the YR4 fast-rotating
+model with a rubble pile \\
+\rowcolor{panel}
+51 m, 2,800 & \(\times 45\) & \(\times 2{,}241\) & as above, coherent \\
+60.8 m, 1,300 & \(\times 81\) & \(\times 3{,}409\) & the YR4
+thermophysical model, rubble pile \\
+\rowcolor{panel}
+60.8 m, 2,800 & \(\times 38\) & \(\times 1{,}583\) & as above, coherent \\
+140 m, 1,300 & \(\times 35\) & \(\times 643\) & the catalogue's threshold
+class \\
+\rowcolor{panel}
+140 m, 2,800 & \(\times 16\) & \(\times 299\) & as above, coherent \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The ratios in \tabref{tab:rg-ratios} are large because the calibration object
+is two orders of magnitude larger, and \eqref{eq:yarkovsky} makes the
+dependence explicit. The practical consequence is that the smaller the body,
+the more the drift rate depends on knowing its size and density --- which is
+precisely the class where the catalogue knows neither.
+
+\section{What a shape measurement does, and does not, buy here}
+
+This is the point at which an over-statement is easiest to make, and the
+published evidence is unusually clear.
+
+The same 2012 study finds that gross shape differences move the Yarkovsky
+drift by only about ten per cent for objects of the same size. What enhances
+the drift appreciably is \emph{roughness beaming} --- the effect of a rough
+surface on the thermal emission --- which can raise it by tens of per cent
+and, in the most favourable cases, by a factor of two. And it finds that the
+sensitivity to the size is three times the sensitivity to the shape: a three
+per cent error in the diameter produces a three per cent error in Yarkovsky,
+while the same three per cent in the shape produces only about one per cent
+in the drift.
+
+The conclusion is uncomfortable but it is the right one, and the book states
+it rather than avoiding it: \textbf{a resolved shape measurement does not
+substantially improve the Yarkovsky drift}. It improves the YORP torque,
+which Chapter 13 takes up, and it supplies the volume on which the entire
+accounting chain rests, and it supplies the spin pole that enters
+\eqref{eq:yarkovsky} through \(\cos\gamma\). But the drift itself is
+governed by the size, the density and the thermal parameter.
+
+This is why the argument of the book is anchored on the accounting chain and
+on the close encounter, and not on the drift. The drift is where the shape
+measurement earns its keep through the spin state and the density, and not
+through the shape's effect on the thermal emission.
+
+\section{What the live case says}
+
+The 2025 JWST analysis of 2024~YR4 makes the connection explicit in its own
+discussion. The object's seasonal heating is negligible for the March 2025
+observations, because of the near-equator-on viewing geometry; the seasonal
+Yarkovsky drift is expected to dominate the diurnal component and might
+become measurable during future encounters; and the non-gravitational forces
+such as the Yarkovsky effect contribute to the growing uncertainty in the
+future trajectory of the object, making very long-term predictions
+impossible.
+
+The wording matters. The drift is not yet measurable for this object. It is
+expected to become measurable at a future encounter. Until then it is a
+term in a covariance matrix that grows with the arc, and it is one of the
+reasons the JWST analysis explicitly declines to offer a long-term impact
+probability.
+
+\begin{keytakeaways}
+\item The Yarkovsky drift depends on the albedo, the obliquity, the density,
+the diameter and a thermal parameter\idx{Thermal parameter} that does not scale with them.
+\item The scaling laws give the size-and-density ratios, which for this class
+are between sixteen and ninety-six times the calibration object, but the
+book does not extrapolate an absolute drift across that range.
+\item A resolved shape measurement improves the drift by only about ten per
+cent; what it improves materially is YORP, the volume and the pole.
+\item For 2024 YR4 the drift is not yet measurable and is expected to become
+measurable at a future encounter, and it is already a growing term in the
+trajectory uncertainty.
+\end{keytakeaways}

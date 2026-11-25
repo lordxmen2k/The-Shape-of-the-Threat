@@ -1,0 +1,173 @@
+% =====================================================================
+%  Chapter 30 — The Platform Selection Rule\idx{Selection rule}
+% =====================================================================
+
+\chapter{The Platform Selection Rule}
+\label{ch:selection-rule}
+
+The book's deliverable is not an architecture. It is a rule that returns an
+architecture, and it is indifferent to the answer it gives for any particular
+target. A rule that always returns the same platform is a preference. This
+chapter writes the rule down, works it on the cases of Chapter 14, and shows
+that it declines the lunar platform as often as it selects it.
+
+\section{The inputs}
+
+For a target with a bracketed diameter \(D\), a bracketed density \(\rho\), a
+geocentric distance \(\Delta\), a heliocentric distance \(r\), a phase angle
+\(\alpha\) and an encounter epoch, the rule runs in six steps.
+
+\begin{enumerate}
+\item Compute the required angular resolution. For a resolved shape
+measurement with \(N\) samples across the diameter,
+\(B \geq N\lambda\Delta/D\), with \(N\) between 4 and 7 and the wavelength
+chosen from the target's photometric brightness.
+\item Compute the over-resolution limit, which caps the usable baseline at
+the point where the body's own structure, rather than the instrument, sets
+the visibility.
+\item Compute the required astrometric precision as \(\lambda/(B\cdot
+\mathrm{SNR})\), and compare it with the along-track budget at the
+encounter horizon.
+\item Check whether the required baseline is buildable at the candidate
+sites: a terrestrial optical array is limited by atmosphere and metrology, a
+lunar surface array by construction and logistics, and an orbital formation
+by station-keeping and pointing.
+\item Check whether the observable can be scheduled inside the target's
+brightness window, which for a close approach is a window of days rather
+than hours.
+\item Check, and only if this passes, whether the physical uncertainty
+dominates the encounter probability.
+\end{enumerate}
+
+The last condition is the substantive content of the rule.
+
+\section{The condition, in its quantitative form}
+
+The physical term dominates when the along-track displacement produced by
+the uncertainty in the Yarkovsky drift exceeds the astrometric along-track
+uncertainty at the horizon.
+
+For a 60-metre object at 1.1 astronomical units, a thirty per cent error in
+the drift rate produces 17.2 kilometres of along-track error over the seven
+years from 2025 to 2032, against a published B-plane uncertainty of 25,000
+kilometres for that encounter after a single extra observation, and 270,000
+kilometres before one. The astrometric term dominates by three orders of
+magnitude at that horizon.
+
+At the 2036 Apophis horizon the situation reverses, because the keyhole
+sits in the tail. The diameter assumption alone is worth 507 kilometres of
+keyhole displacement and the density assumption 379 kilometres, against an
+astrometric standard deviation of 399 kilometres.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{The rule applied to the two documented cases.}
+\label{tab:rule-applied}
+\begin{tabularx}{\textwidth}{@{}P{1.39in}P{1.17in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Case} & \textbf{Verdict} & \textbf{Why} \\
+\midrule
+2024 YR4, 2032 & \textbf{decline the lunar platform} & the astrometric
+term dominates by three orders of magnitude; characterising it does not
+shorten this clock \\
+\rowcolor{panel}
+Apophis, 2029 & \textbf{select the lunar platform} & the physical terms
+are each comparable with the astrometric sigma, and the keyhole is in the
+tail \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\tabref{tab:rule-applied} is the rule doing its job. For the case that is
+the book's worked example in every popular account of 2024 YR4, it declines
+the platform. For the case with the largest published impact-probability
+sensitivities in the literature, it selects it.
+
+\section{Why the rule is written this way}
+
+Three design decisions in the rule deserve their reasons stated.
+
+The rule is written as a sequence with a conditional at the end, rather than
+as a set of weights, because the conditional is a statement about the
+physics and not a preference. The last step is a test that can be failed,
+and a rule that cannot be failed is a slogan.
+
+The rule returns a platform rather than a measurement. Several platforms can
+close the same job --- radar and a lunar array can both deliver a shape ---
+and the rule has to be able to return either, on the grounds of cost,
+opportunity and what else the platform does.
+
+The rule's cost term is deliberately not a number in this book. The
+published cost of a space mission, a ground array and a lunar station are
+not commensurable in any way a reader could use without a procurement
+context the book does not have. What the rule does instead is require that
+the platform be buildable at the required baseline, which is the constraint
+that actually discriminates between the candidates: the terrestrial
+alternative for a kilometre-scale optical baseline is an atmospheric and
+metrological problem, and that is the whole of the discrimination.
+
+\begin{deeper}{What the rule does with the lunar platform's weaknesses}
+The rule's fourth step --- buildability\idx{Buildability} at the required baseline --- is where
+the lunar case is made, and it is a step the Moon passes because the
+construction problem separates from the atmosphere problem. The rule's fifth
+step --- schedulability inside the brightness window --- is where the lunar
+platform's disadvantages bite, and they are handled by the fact that the
+lunar sky rotates slowly enough that a window measured in days is
+achievable. The rule does not pretend that dust and the night are absent.
+It requires that the campaign structure account for them, which is what the
+thirty per cent overhead allowance in Chapter 25 does.
+\end{deeper}
+
+\section{The rule as stated for use}
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{The selection rule, stated for use.}
+\label{tab:rule}
+\begin{tabularx}{\textwidth}{@{}P{2.57in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Step} & \textbf{Test} \\
+\midrule
+1 & Is \(N\lambda\Delta/D\) buildable at any candidate site? If not, no
+resolved-shape measurement is possible and the answer is a thermal or radar
+measurement. \\
+\rowcolor{panel}
+2 & Is the matched baseline inside the over-resolution limit? If not, shorten
+the baseline or shorten the wavelength. \\
+3 & Does \(\lambda/(B\cdot\mathrm{SNR})\) meet the along-track budget at the
+encounter horizon? If not, a longer baseline or a longer integration is
+required. \\
+\rowcolor{panel}
+4 & Is the site able to hold the baseline? Terrestrial: no, above a few
+hundred metres. Lunar: yes, with a surveyed anchor array. Orbital: station
+keeping sets the limit. \\
+5 & Is there a brightness window, and is it long enough? \\
+\rowcolor{panel}
+6 & Does the physical uncertainty exceed the astrometric uncertainty at the
+horizon? If not, the answer is more astrometry, and the characterisation
+measurement does not matter. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Step 6 is the one that decides, and the reason the rule ends with it is the
+reason the whole book is organised the way it is. The accounting chain is
+the reason the platform matters; the probability chain is the reason it
+matters only sometimes. A rule that reversed the order would recommend
+characterisation everywhere, and would be wrong.
+
+\begin{keytakeaways}
+\item The rule has six steps and ends with a test that can be failed: whether
+the physical uncertainty dominates the encounter probability.
+\item Applied to 2024 YR4's 2032 encounter, the rule declines the lunar
+platform, because the astrometric term dominates by three orders of
+magnitude.
+\item Applied to Apophis's 2029 encounter, the rule selects it, because the
+physical terms are each comparable with the astrometric standard deviation.
+\item The rule returns a platform rather than a measurement, and it does not
+carry a cost term the book cannot defend.
+\end{keytakeaways}

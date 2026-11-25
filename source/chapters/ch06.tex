@@ -1,0 +1,192 @@
+% =====================================================================
+%  Chapter 6 — Size Conventions and the Albedo-Temperature Degeneracy
+% =====================================================================
+
+\chapter{Size Conventions and the Albedo-Temperature Degeneracy}
+\label{ch:size-conventions}
+
+Before the energy of an impact can be computed, the size of the object has to
+be fixed, and fixing the size of a small body is harder than it looks. This
+chapter works through the two available routes to a diameter --- the
+reflected-light route and the thermal route --- and shows that each carries an
+assumption that is not measured. The degeneracy is not a defect of the
+instruments. It is a property of the information available.
+
+\section{The absolute magnitude and what it means}
+
+A body's absolute magnitude \(H\) is the magnitude it would have at one
+astronomical unit from the Sun and one astronomical unit from the observer,
+at zero phase angle. It is a measure of the reflected light the body would
+return if it were seen under standard conditions, and it is the only
+photometric quantity the catalogue reliably carries.
+
+The relation between \(H\), the geometric albedo \(p\) and the effective
+diameter \(D\) is
+\begin{equation}
+D = \frac{1329}{\sqrt{p}}\,10^{-H/5}\ \ \mathrm{km},
+\label{eq:hdp2}
+\end{equation}
+which follows from the definition of the albedo and the geometry of the
+diffuse-reflection approximation. For a body of a given albedo, the diameter
+is set by the brightness; for a body of a given brightness, the diameter is
+set by the albedo.
+
+The albedo is a composition measurement. A dark carbonaceous surface reflects
+a few per cent; a bright silicate surface reflects several tens of per cent.
+Changing the assumed albedo from 0.10 to 0.20 changes the diameter by a
+factor of \(1/\sqrt{2}\), which is a factor of \(2.8\) in volume and a factor
+of \(2.8\) in mass.
+
+That is already a large effect, and it is only the first of two.
+
+\section{The thermal route, and the beaming parameter}
+
+The second route measures the body's own heat. A small body absorbs sunlight
+and reradiates it, and the flux it emits in the thermal infrared is a
+function of its temperature, its emissivity and its projected area --- which
+is a function of its diameter.
+
+The equilibrium temperature\idx{Equilibrium temperature} follows from a balance. The absorbed flux at
+heliocentric distance \(r\), for a body with geometric albedo \(A\) and
+emissivity \(\varepsilon\), is \((1-A)S_0/r^{2}\) per unit area, where \(S_0\)
+is the solar constant at one astronomical unit. The emitted flux is
+\(\varepsilon\sigma T^{4}\). Balancing them and inserting the solar constant
+gives the familiar result
+\begin{equation}
+T_{\mathrm{eq}} = 278\ \mathrm{K}\ \left(\frac{1\ \mathrm{AU}}{r}\right)^{1/2}
+\label{eq:teq}
+\end{equation}
+for \(A = 0.1\) and \(\varepsilon = 0.9\), and a factor \(((1-A)/\varepsilon)^{1/4}\)
+for other values. The temperature does not depend on the size, which is the
+reason the technique works.
+
+The observed flux, however, does. The total thermal flux from a body of
+diameter \(D\) is proportional to \(D^{2}\), and the relationship between the
+observed flux and the body's own emission depends on how the heat is
+distributed over the surface. That distribution is summarised by the
+\emph{beaming parameter} \(\eta\): it is the ratio of the total emitted power
+to the power that a smooth sphere would emit at the same subsolar
+temperature. For a body whose surface radiates efficiently the beaming
+parameter approaches unity; for a rough surface with self-shadowing it is
+smaller. The physically allowed range is \(0 < \eta \leq 1\).
+
+The observed flux therefore scales as
+\begin{equation}
+F_{\mathrm{obs}} \propto \eta\,D^{2},
+\label{eq:eta}
+\end{equation}
+and \eqref{eq:eta} is the degeneracy. The diameter and the beaming parameter
+cannot be separated by a single thermal band: the measurement determines the
+product, and the diameter is fixed only by assuming a beaming parameter.
+
+\section{What the beaming parameter costs, and how it is detected}
+
+The assumption is testable, because a beaming parameter above unity is
+unphysical, and a fit that returns one is telling you that the model is
+wrong rather than that the object is strange. The 2025 JWST analysis of
+2024~YR4 is an exact illustration.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{The three thermal models fitted to 2024 YR4, and what the beaming
+parameter did to each.}
+\label{tab:thermal-models}
+\begin{tabularx}{\textwidth}{@{}P{1.14in}P{0.74in}P{0.82in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Model} & \textbf{Diameter} & \textbf{Albedo} & \textbf{Status} \\
+\midrule
+NEATM, standard & 60.6 m & --- & requires a beaming parameter of 3.06,
+which is unphysical; rejected \\
+\rowcolor{panel}
+Fast rotating model & 51.1 m & 0.16 & a coherent rotation model, credible \\
+Thermophysical model & 60.8 m & --- & the published best fit; a
+non-rotating body with a thermal inertia\idx{Thermal inertia} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The two credible models differ by 19 per cent in diameter: 51.1 against
+60.8 metres. The photometry\idx{Photometry} that produced them is excellent. The difference
+between them is entirely a statement about how the heat is distributed, and
+therefore about how the surface is shaped.
+
+\begin{deeper}{Why the thermophysical model is not simply better}
+The thermophysical model treats the body as having a finite thermal inertia\idx{Thermal inertia},
+so the surface temperature varies through the rotation and the night is
+cooler than the day. That is physically more realistic, and it is the source
+of the high thermal inertia\idx{Thermal inertia} and low surface roughness reported for
+2024~YR4. But realism in the forward model is not the same as freedom from
+assumption: the thermophysical model still has to be supplied with a spin
+state, a thermal inertia and a roughness distribution, and it delivers a
+diameter that is 19 per cent larger than the one the coherent-rotation model
+gives. The correct reading is not that one model is right. It is that the
+model choice is worth more than the measurement error, and that a
+measurement which does not depend on the model --- a resolved image --- is
+worth a great deal.
+\end{deeper}
+
+\section{The photometric route, and its own assumption}
+
+The third route is the one the field uses most, because it is the cheapest.
+A lightcurve gives the object's rotation period and the projected extent of
+its brightness variation; combined with the absolute magnitude, an inversion
+produces a shape model, and from the model a volume, a diameter and an
+albedo.
+
+The assumption here is the convexity. A lightcurve constrains the body's
+projected outline in two dimensions as it rotates, and the standard inversion
+returns the convex hull\idx{Convex hull} of the constraint set --- a convex body, by
+construction, whatever the body actually is. This is the subject of
+Chapter 17.
+
+\section{Why the degeneracy is the practical problem}
+
+Taken together, the three routes have this structure. The photometric route
+assumes convexity and returns an albedo as an output rather than an input.
+The thermal route assumes a beaming parameter and cannot detect it from a
+single band. The absolute magnitude route assumes an albedo and has no way
+to check it.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{The three routes to a diameter, the assumption each one makes, and
+the size of the resulting uncertainty in the energy.}
+\label{tab:routes}
+\begin{tabularx}{\textwidth}{@{}P{1.36in}P{1.68in}P{1.23in}@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Route} & \textbf{Assumption} & \textbf{Energy factor} \\
+\midrule
+Thermal, single model & beaming parameter & 1.0, by definition \\
+\rowcolor{panel}
+Thermal, model spread & choice of model & 1.68 for 2024 YR4 \\
+Absolute magnitude & albedo & up to 2.8 \\
+\rowcolor{panel}
+Photometric inversion & convexity & of order 1.1 to 1.3 \\
+Resolved imaging & none of the above & bounded by the imaging \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The last row is the reason this book exists. A resolved image does not need
+an albedo, a beaming parameter or a convexity assumption. It reports the
+projected area at the epoch, and the projected area is a measurement. What it
+does not directly report is the volume, because a projection of a rotating
+body is not a projection of its shape unless the body is convex --- but it
+reports the two-dimensional geometry that the volume has to be built on, and
+it reports it without a model.
+
+\begin{keytakeaways}
+\item A diameter cannot be obtained from photometry\idx{Photometry} without an assumption
+about the albedo, and cannot be obtained from a single thermal band without
+an assumption about the beaming parameter.
+\item The beaming parameter is bounded by unity, so a fit returning 3.06 is a
+detectable model failure rather than a measurement.
+\item The two credible thermal models for 2024 YR4 differ by 19 per cent in
+diameter, which is a factor of 1.68 in energy at fixed density.
+\item The measured values in \tabref{tab:routes} are the model choices, and
+the resolved imaging row is the only one with no model in it.
+\end{keytakeaways}

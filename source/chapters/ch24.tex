@@ -1,0 +1,137 @@
+% =====================================================================
+%  Chapter 24 — \idxw{Dust}, \idxw{Night} and the Engineering Envelope
+% =====================================================================
+
+\chapter{Dust, Night and the Engineering Envelope}
+\label{ch:envelope}
+
+The lunar concept has two objections that have been attached to it since
+the beginning: the dust\idx{Dust} and the night. The dust\idx{Dust} objection has moved
+furthest, because a mitigation technology that was a proposal when the
+concept was written has now been demonstrated on the Moon. The night\idx{Night}
+objection has not moved at all, because it is arithmetic.
+
+\section{Dust, and the demonstration that changed its status}
+
+The \idxw{Electrodynamic Dust Shield} lifts and clears regolith from surfaces using
+a patterned electrode array generating a non-uniform electric field. It was
+demonstrated on the lunar surface during Firefly Aerospace's Blue Ghost
+Mission 1 in 2025, raising its technology readiness level from 5 to 7, with
+a camera-lens clearing efficiency estimated at 96.6 per cent. NASA's current
+dust\idx{Dust} mitigation catalogue lists it at that level for the Moon.
+
+Two things should be said about it, and the second is the important one.
+
+The first is that the dust objection has changed character. It is no longer
+an open question whether the dust can be moved off an optic. It is a
+question about how long an optic can be kept clean, on a surface where the
+optics cannot be serviced for years, with a mitigation that NASA's own
+roadmap cautions ``should not be the only tool in our toolbox''.
+
+The second is that a shield is a mitigation for dust \emph{on a surface}.
+Nothing in the published work shows that it can protect the primary mirror of
+an interferometric aperture, or the baffle edges of a kilometre-scale array
+spread over three kilometres of ground, or the coatings on a delay line that
+has to hold a path difference to a fraction of a wavelength. The
+demonstration was a camera lens on a lander.
+
+\begin{seamnote}{The distinction the proposal has to live with}
+A camera lens on a lander is a flat, exposed, near-surface, replaceable
+optical element. A kilometre-scale array is a set of apertures on anchor
+points, each with its own baffle, and the array is not replaceable. The
+dust mitigation that has been demonstrated addresses the first problem and
+not the second. The book does not claim otherwise; it claims that the
+engineering envelope is closed enough to be worth designing against, and
+that the residual dust risk is one of the things that would have to be
+managed by the baseline selection rule rather than by cleaning.
+\end{seamnote}
+
+\section{The night, which is arithmetic}
+
+The lunar night\idx{Night} at a polar site runs for about 328 hours, or thirteen and a
+two-thirds days. Over that period a thermally exposed instrument drifts
+towards the temperature of its surroundings, and the published engineering
+figures for a thermally controlled payload at the south pole give survival
+temperatures of about 100 kelvin and a seven kilowatt-hour battery to carry
+a spectrometer through the night.
+
+Three consequences follow for the proposal of Chapter 25.
+
+The optical channel's baffle has to be held below about 250 kelvin for the
+background arithmetic of Chapter 23 to work, and that is an insulation
+problem rather than a cryogenics problem. The mid-infrared channel, which
+needs 40 kelvin, would need the permanently shadowed region and therefore
+the full power architecture. This is precisely why the proposed architecture
+has no mid-infrared channel: the night\idx{Night} is what makes the cryogenic option
+expensive, and the optical option is cheap by comparison.
+
+The instrument cannot be pointed at the Sun during the night in any case,
+because the Sun is below the horizon at a polar site for the whole of it.
+The operational consequence is that the night is not a period of reduced
+service but a period of no service, and that the campaign scheduling has to
+account for it.
+
+And the station's power has to come from somewhere that is not the
+illuminated surface, or from storage that lasts the night. The published
+answer --- regenerative fuel cells combined with vertical solar arrays,
+delivering 10 kilowatts to permanently shadowed regions --- is a
+kilowatt-class architecture for an instrument that does not need kilowatts.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{The engineering envelope, item by item, with the status each item
+has reached.}
+\label{tab:envelope}
+\begin{tabularx}{\textwidth}{@{}P{1.37in}P{1.19in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Item} & \textbf{Status} & \textbf{What the book claims} \\
+\midrule
+Atmospheric seeing & solved & no atmosphere at all \\
+\rowcolor{panel}
+Baseline stability & solved & a rigid, airless, slowly rotating body \\
+Dust & mitigated & a flight demonstration at TRL 7; the long-term case for
+a kilometre-scale array is open \\
+\rowcolor{panel}
+Night survival & arithmetic & 328 hours, 100 K survival, a 7 kWh battery \\
+Power & published & 10 kW to permanently shadowed regions \\
+\rowcolor{panel}
+Thermal background & closed for optical & the baffle at 250 K; the
+mid-infrared channel loses to L1 \\
+Observing window & quantified & 6.83 days for the orthogonal orientation \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{What the envelope permits}
+
+The envelope in \tabref{tab:envelope} permits a specific instrument and
+forbids others. It permits a visible-light interferometer with a thermally
+controlled baffle, a surveyed array of anchor points, a service that operates
+in daylight near the pole, and a campaign structure that uses the slow
+rotation of the sky.
+
+It forbids a mid-infrared channel, a cryogenic payload in an illuminated
+site, and a service that depends on a continuously available sky. And it
+imposes the constraint that the station's duty cycle is set by the
+twenty-eight-day lunar cycle rather than by the observing target.
+
+That last point is worth stating as a number, because it is the number that
+the campaign rate in the next chapter depends on. The station can observe
+for roughly half of each synodic month, at the pole, and it can observe
+objects that are near the Sun at all, and it cannot observe through the
+night. The net effect on the annual service rate is a factor that the
+book's generator folds into its overhead allowance.
+
+\begin{keytakeaways}
+\item Dust mitigation has been demonstrated on the Moon at TRL 7 with a
+96.6 per cent camera-lens clearing efficiency, but it has not been
+demonstrated for a kilometre-scale array.
+\item The night runs for 328 hours, with survival temperatures near 100
+kelvin and a 7 kilowatt-hour battery.
+\item The envelope permits a visible-light instrument with a baffle at about
+250 kelvin and forbids a mid-infrared channel in an illuminated site.
+\item The duty cycle is set by the lunar cycle rather than by the target,
+and it is the single largest term in the overhead allowance.
+\end{keytakeaways}

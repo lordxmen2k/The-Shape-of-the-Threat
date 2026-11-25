@@ -1,0 +1,143 @@
+% =====================================================================
+%  Chapter 2 — The Two Axes of the Hazard Scale
+% =====================================================================
+
+\chapter{The Two Axes of the Hazard Scale}
+\label{ch:two-axes}
+
+The Torino Impact Hazard Scale, adopted by the International Astronomical Union
+in 1999, is the instrument the planetary-defence community uses to say how
+much attention an object deserves. It is worth reading carefully, because the
+reading is where the accountability gap becomes visible.
+
+The scale is defined on two axes. The horizontal axis is the probability
+\(p\) that the object will strike Earth. The vertical axis is the kinetic
+energy \(E\) the object would release, measured in megatons of TNT. Every
+assignment of a level to an object is a statement about the pair \((p, E)\),
+and the pair matters more than either number alone: an object with a
+probability of one in ten thousand and an energy of a kiloton is a different
+problem from an object with the same probability and an energy of a hundred
+megatons.
+
+\section{Why the energy axis is the hard one}
+
+The probability axis is measured. An orbit is fitted from astrometry, the
+orbit is propagated, and the probability of intersection with the Earth's
+cross-section is computed. The machinery is good, the observation times are
+dense, and the numerical work is unremarkable. The energy axis is inferred,
+and the inference has two stages.
+
+The first stage is the diameter. A celestial body's absolute magnitude \(H\)
+and its geometric albedo \(p\) are related to its effective diameter \(D\) by
+the standard relation
+\begin{equation}
+D = \frac{1329}{\sqrt{p}}\,10^{-H/5}\ \ \mathrm{km},
+\label{eq:hdp}
+\end{equation}
+which is a statement that a brighter object of the same albedo is bigger.
+The problem is that \(p\) is a composition measurement, and the small
+near-Earth objects that matter most have had their composition measured for
+about fifteen per cent of them.
+
+The second stage is the density. The mass is \(m = \rho \pi D^{3}/6\) for a
+sphere of the given diameter, and the kinetic energy at impact speed \(v\) is
+\begin{equation}
+E = \frac{1}{2}\,m\,v^{2} = \frac{1}{2}\,\rho\,\frac{\pi}{6}\,D^{3}\,v^{2}.
+\label{eq:energy}
+\end{equation}
+For a near-Earth object at a typical impact speed of 14 to 17 kilometres per
+second, the density\idx{Density} is the dominant uncertainty. A rubble pile with a bulk
+density\idx{Density} of 1,300~kg\,m\(^{-3}\) and a coherent monolith at 3,500~kg\,m\(^{-3}\)
+differ by a factor of 2.7 in mass at the same diameter, and a factor of 2.7 in
+energy.
+
+\section{The error budget, in one line}
+
+Differentiating \eqref{eq:energy} in logarithms gives the relation the whole
+book turns on:
+\begin{equation}
+\delta\ln E = 3\,\delta\ln D + \delta\ln \rho.
+\label{eq:dlne}
+\end{equation}
+The diameter enters three times because volume goes as the cube. This has a
+plain consequence. If the energy is to be known to within a factor of three
+and the density\idx{Density} to within thirty per cent, then the diameter must be known to
+within thirty per cent. If the energy is to be known to within a factor of
+two, the diameter must be known to about fourteen per cent.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{What diameter accuracy the energy chain demands. The density is held
+at thirty per cent, which is the state of the art for the near-Earth class.}
+\label{tab:diameter-need}
+\begin{tabularx}{\textwidth}{@{}P{1.19in}P{1.37in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Energy known to} & \textbf{Diameter must be known to} &
+\textbf{Where that stands} \\
+\midrule
+a factor of 3 & 30 per cent & the present state of the art \\
+\rowcolor{panel}
+a factor of 2 & 14 per cent & beyond the published state of the art \\
+a factor of 1.5 & 7 per cent & well beyond it \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The NASA Center for Near Earth Object Studies' impact monitoring service
+states the position in its own terms: the tabulated impact energy\idx{Impact energy} is
+``generally good to within a factor of three'', and it attributes this to mass
+uncertainty dominating the budget. That is the honest characterisation of the
+field's present position, and it is the number the rest of this book is trying
+to move.
+
+\section{The threshold that moves when the size moves}
+
+The \idxw{Torino scale}'s Level 1 boundary is not a fixed probability. It is a line
+in the \((p, E)\) plane, and the line's intercept depends on the energy:
+\begin{equation}
+p \geq \frac{10^{-7/3}}{E} = \frac{4.64\times 10^{-3}}{E}\qquad (E \text{ in Mt}).
+\label{eq:level1}
+\end{equation}
+This follows directly from the scale's definition: Level 1 is entered when
+the combination \((\log_{10} E + \tfrac{1}{3} + \log_{10} p + 2)/2\) reaches
+zero.
+
+The consequence is the single most uncomfortable fact in this chapter. An
+object whose astrometry has not changed at all --- not by one milliarcsecond,
+not by one orbit --- can be Level 0 or Level 1 purely because of how it was
+sized. A factor of 4.5 in energy moves the Level 1 probability threshold by
+the same factor of 4.5, from about \(4.7\times 10^{-4}\) to about
+\(2.2\times 10^{-3}\). Whether an object is a Level 1 event, and therefore
+whether it generates a formal notification through the international warning
+network, is a decision made by an assumption about the object's composition.
+
+\section{What the scale does not do}
+
+It is worth being clear about what the scale is for, because the gap this
+book describes is not a failure of the scale. The Torino scale\idx{Torino scale} is a
+communication instrument. It exists to let a duty officer, a news desk and a
+commissioning agency talk about the same object in the same terms. It is
+doing that job.
+
+What it cannot do is supply the energy. The scale is handed a number and
+reports a level; the number arrives from the same inference described above,
+and the inference is where the uncertainty lives. The scale's own structure
+makes the point: it is a two-axis system in which one axis is measured to
+high precision and the other is assumed. Chapter 5 works through a case in
+which the assumed axis moved by a factor of 4.5 while the measured axis stood
+still.
+
+\begin{keytakeaways}
+\item The Torino scale\idx{Torino scale}'s two axes are not equally supported: probability is
+measured and energy is inferred.
+\item The relation \(\delta\ln E = 3\,\delta\ln D + \delta\ln \rho\) makes
+the diameter the dominant term, so a factor of two in energy needs a
+fourteen per cent diameter.
+\item The Level 1 probability threshold is proportional to the inverse of the
+energy, so a mis-sized object can cross a notification boundary with its
+astrometry untouched.
+\item The scale is a communication instrument and is not at fault; the
+uncertainty enters before the scale is applied.
+\end{keytakeaways}

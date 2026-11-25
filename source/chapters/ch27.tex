@@ -1,0 +1,169 @@
+% =====================================================================
+%  Chapter 27 — Bistatic Radar and the Australian Record
+% =====================================================================
+
+\chapter{Bistatic Radar and the Australian Record}
+\label{ch:bistatic-radar}
+
+Radar is the instrument that closes the whole accountability chain, and the
+strongest demonstration of it in the world is a pair of Australian radio
+telescopes. This chapter takes the technique at its best, because a
+comparison that only examines the competitors at their weakest is not a
+comparison.
+
+\section{What bistatic radar buys}
+
+A single radar dish transmits and receives. The echo's delay gives the
+range to the target and its Doppler shift gives the line-of-sight velocity;
+together they reconstruct a three-dimensional shape, and the radar
+cross-section gives the size.
+
+A bistatic system separates the two functions. One station transmits and
+another receives, and the geometry between them is the baseline. The
+advantages are a much longer effective baseline, a different signal-to-noise
+regime, and --- importantly for this book --- the possibility that one of the
+two stations is not a radio telescope at all.
+
+\section{The Australian record}
+
+The demonstration record is the \idxw{Green Bank Telescope} and the \idxw{Parkes}
+observatory used as a bistatic pair, with the Effelsberg 100-metre telescope
+contributing in some campaigns. More than fifty near-Earth objects have been
+characterised since 2015, including delay-Doppler images and polarimetric
+measurements.
+
+The polarimetry is the part that matters most for this book, because it is a
+direct diagnostic of the surface state and therefore of the density question
+that Chapter 7 identified as the second half of the energy gap. A radar
+echo that is polarised in a particular way is a surface that is consolidated
+rather than particulate, and that is a statement about the bulk density.
+
+The delay-Doppler images are the part that matters for the shape, because
+they are three-dimensional without a convexity assumption.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{What the bistatic record delivers, and what limits it.}
+\label{tab:bistatic}
+\begin{tabularx}{\textwidth}{@{}P{2.57in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Quantity} & \textbf{Status} \\
+\midrule
+Objects characterised & more than fifty since 2015 \\
+\rowcolor{panel}
+Shape & three-dimensional, from delay-Doppler inversion, with no convexity
+assumption \\
+Polarimetry & a direct surface-state diagnostic and therefore a density
+diagnostic \\
+\rowcolor{panel}
+Selection & only radar-crossing objects, and only at close range \\
+Sensitivity growth & three times the Green Bank sensitivity more than
+doubles the accessible volume, extending the range by about thirty per
+cent; five times more than triples it, by about fifty per cent \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The sensitivity line in \tabref{tab:bistatic} is worth pausing on, because
+it shows the shape of the problem. Doubling the sensitivity extends the
+range by thirty per cent; quintupling it extends the range by fifty per
+cent. The relationship is logarithmic, because the fourth-power law means
+that the range grows as the fourth root of the sensitivity. **No amount of
+telescope improvement moves radar from a population of dozens to a
+population of thousands.** A factor of five in sensitivity buys a factor of
+1.5 in range, and the range is what selects the objects.
+
+\begin{deeper}{The fourth-power law in one sentence}
+The echo power falls as the inverse fourth power of range, so the range
+grows as the fourth root of the sensitivity. Improving a radar system by a
+factor of a hundred in sensitivity extends its reach by a factor of three.
+The population it can reach is therefore set by geometry, not by
+engineering, and this is why radar is a complement to the optical
+programme and not a replacement for it.
+\end{deeper}
+
+\section{The Moon as a bistatic partner}
+
+The lunar bistatic radar concept has been in the literature since 2018, and
+the conference literature of 2022 lists ``using the Moon itself'' among the
+demonstrated reference-receiver scenarios. The concept is that a radar
+transmitter on the Earth and a receiver on the Moon, or the reverse, forms a
+bistatic pair with the Moon's surface as the reflector.
+
+The advantage is the same one that motivates the optical case, and it is
+worth stating in the same terms: the Moon's surface is a stable, rigid,
+airless reflector at a known position, and a bistatic baseline to it is long
+and exactly known.
+
+The disadvantage is the one the fourth-power law imposes on everything: the
+geometry that makes the baseline long also makes the round trip long, and
+the target's radar cross-section has to survive the whole path. The concept
+is a good one and the book records it as prior art rather than as a
+contribution.
+
+\section{Why radar cannot be the answer to the catalogue}
+
+
+The conclusion of this chapter is not that radar is unimportant. Radar is
+the only method in the field that delivers the mass and the density, and
+those are the two terms the accounting chain cannot do without.
+
+The conclusion is that radar cannot be the answer to the catalogue, for
+three reasons that are all structural.
+
+The selection effect is the first. Only objects whose surfaces are
+radar-bright are observable at all, and for the small near-Earth class that
+is a small fraction.
+
+The geometry is the second. The fourth-power law fixes the reachable
+population, and the sensitivity scaling is logarithmic in range, so
+engineering effort does not move the population.
+
+The opportunity is the third. A radar observation requires the object to be
+at a particular distance at a particular time, with a particular geometry,
+and the opportunity cannot be scheduled. It has to be caught.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Radar and the optical array against the five jobs the accountability
+chain requires.}
+\label{tab:radar-vs-optical}
+\begin{tabularx}{\textwidth}{@{}P{1.35in}P{1.21in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Job} & \textbf{Radar} & \textbf{Lunar optical array} \\
+\midrule
+Diameter & yes, with a model & yes, without a model \\
+\rowcolor{panel}
+Shape & yes, three-dimensional & yes, projected, with a model \\
+Density & yes, by polarimetry & only at a close encounter, by the mass \\
+\rowcolor{panel}
+Mass & yes & only at a close encounter \\
+Opportunity & cannot be scheduled & can be scheduled \\
+\rowcolor{panel}
+Population reached & dozens & about 37 per year, on request \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\tabref{tab:radar-vs-optical} is the comparison that the portfolio decision
+of the next chapter turns on. Radar wins five of the six rows. It loses the
+last one, and the last one is the row that decides whether a capability can
+be commissioned for a catalogue.
+
+\begin{keytakeaways}
+\item The Green Bank and Parkes\idx{Parkes} bistatic pair has characterised more than
+fifty near-Earth objects since 2015, with three-dimensional shapes and
+polarimetry that is a direct density diagnostic.
+\item Sensitivity improvements scale as the fourth root in range, so a factor
+of five in sensitivity extends the reach by fifty per cent and cannot move
+radar from dozens of objects to thousands.
+\item A lunar bistatic partner is well documented prior art, and the Moon's
+usefulness as a reflector is the same stability argument as the optical
+case.
+\item Radar wins five of the six jobs the accountability chain requires, and
+loses the one that decides whether a capability can serve a catalogue.
+\end{keytakeaways}

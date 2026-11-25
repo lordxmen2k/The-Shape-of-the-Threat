@@ -1,0 +1,164 @@
+% =====================================================================
+%  Chapter 11 — The \idxw{Keyhole} and How It Is Constructed
+% =====================================================================
+
+\chapter{The Keyhole and How It Is Constructed}
+\label{ch:keyhole}
+
+The keyhole\idx{Keyhole} is the most efficient idea in planetary defence, and it is also
+the one most often misdescribed. It is not a place on the Earth. It is a
+narrow window on a plane, and an object passes through it or it does not.
+This chapter constructs the window from first principles, because the
+construction is what determines how much a physical measurement is worth.
+
+\section{The target plane}
+
+When an asteroid's orbit is propagated to a close encounter with a planet, the
+trajectory is described in a plane perpendicular to the planet's approach
+direction: the target plane\idx{Target plane}, or B-plane. Two coordinates on that plane locate
+the impact parameter: the component along the direction of the planet's
+motion, called the along-track coordinate\idx{Along-track coordinate} \(\zeta\), and the component across
+it, called the cross-track coordinate \(S\).
+
+The impact parameter\idx{Impact parameter} itself is the distance of the object's centre from the
+planet's centre at the encounter epoch,
+\begin{equation}
+b = \sqrt{S^{2} + \zeta^{2}},
+\label{eq:bplane}
+\end{equation}
+and a collision occurs when \(b\) is smaller than the sum of the two radii.
+
+\begin{deeper}{Why the target plane and not the sky}
+Because the planet moves. The distance at which an object passes the Earth
+depends on where it is in the sky relative to the Earth's motion at the
+moment of passage, not on where it is relative to the stars. An observer on
+the Earth's surface, looking at the same object on two different nights, sees
+it in the same place in the stars, and the planet's own motion carries the
+impact parameter\idx{Impact parameter} around by a very large amount. The target plane\idx{Target plane} removes
+that motion and leaves the geometry of the encounter itself.
+\end{deeper}
+
+\section{From a collision to a keyhole}
+
+The set of positions on the target plane\idx{Target plane} that produce a collision is a
+region of finite width, because the collision is not a point. The width of
+that region is set by the sum of the radii and by the geometry of the
+approach: at a grazing encounter the effective collision cross-section is
+enlarged, and the region is elongated along the direction of the relative
+velocity.
+
+The region is called a keyhole\idx{Keyhole}, and its dimensions for a given encounter are
+computable from the published encounter geometry. For the 2036 encounter of
+Apophis with the Earth, the published keyhole\idx{Keyhole} width is 616.16 metres.
+
+That is a very narrow window, and the narrowness is the entire point. A
+keyhole that were a thousand kilometres wide would be a corridor; a keyhole
+six hundred metres wide is a target.
+
+\section{The probability, and what it is a function of}
+
+The impact probability is the fraction of the probability distribution of the
+along-track coordinate\idx{Along-track coordinate} that falls inside the keyhole. If the along-track
+distribution is Gaussian with standard deviation \(\sigma_\zeta\), and the
+keyhole is a strip of half-width \(w/2\) centred on \(\zeta_c\), then
+\begin{equation}
+P = \int_{\zeta_c - w/2}^{\zeta_c + w/2}
+\frac{1}{\sigma_\zeta\sqrt{2\pi}}
+\exp\!\left(-\frac{\zeta^{2}}{2\sigma_\zeta^{2}}\right)\,\mathrm{d}\zeta.
+\label{eq:keyhole-prob}
+\end{equation}
+
+Three things follow immediately, and they are worth separating because they
+are confused constantly.
+
+The probability is a function of the \emph{width} of the keyhole, which is
+fixed by the geometry of the encounter. No amount of characterisation changes
+it.
+
+The probability is a function of the \emph{position} of the keyhole relative
+to the distribution, which is set by the object's physical properties. This
+is the term that a characterisation campaign moves.
+
+The probability is a function of \(\sigma_\zeta\), the width of the
+along-track distribution, which is set by the astrometry.
+
+\section{Reconstructing the published number}
+
+The published 2036 impact probability for Apophis is \(7.07\times 10^{-9}\),
+the keyhole width is 616.16 metres, and the keyhole centre sits 4.77 sigma
+out in the along-track distribution. Those three numbers are not independent,
+and the book's own generator reconstructs them from one another.
+
+Take the along-track distribution to be Gaussian with standard deviation
+\(\sigma_\zeta\). At a centre position of \(z = -4.77\) standard deviations,
+the probability density per unit length is
+\begin{equation}
+\phi(-4.77) = \frac{1}{\sqrt{2\pi}}\exp\!\left(-\frac{4.77^{2}}{2}\right)
+= 4.57\times 10^{-6},
+\end{equation}
+in units of inverse sigma. The keyhole's full width in units of sigma is
+\(616.16/\sigma_\zeta\). The probability is the product, and setting it equal
+to the published \(7.07\times 10^{-9}\) and solving gives
+\begin{equation}
+\sigma_\zeta = 398.5\ \mathrm{km}.
+\label{eq:sigmazeta}
+\end{equation}
+
+The arithmetic closes: with that value of \(\sigma_\zeta\), the computed
+probability is \(7.07\times 10^{-9}\), which is the published number. The
+along-track uncertainty on the 2036 encounter is therefore about four
+hundred kilometres, and the keyhole is six hundred metres wide --- roughly
+one and a half parts in a thousand of the distribution's width, sitting
+almost five sigma out in its tail.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{What one standard deviation of the along-track distribution is
+worth, at the 2036 keyhole.}
+\label{tab:tail-sensitivity}
+\begin{tabularx}{\textwidth}{@{}P{1.55in}P{1.01in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Shift of the keyhole centre} & \textbf{Probability factor} &
+\textbf{Interpretation} \\
+\midrule
+0.1 per cent of \(\sigma\) & 1.00 & negligible \\
+\rowcolor{panel}
+1 per cent of \(\sigma\) & 1.05 & a few kilometres \\
+10 per cent of \(\sigma\) & 1.61 & forty kilometres \\
+\rowcolor{panel}
+100 per cent of \(\sigma\) & 118 & four hundred kilometres \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\tabref{tab:tail-sensitivity} is the magnification that the tail provides,
+and it is derived from the Gaussian directly: the probability ratio between
+two positions \(z_1\) and \(z_2\) in the tail is
+\(\exp\left(z_{1}(z_{2}-z_{1})\right)\), and at \(z = 4.77\) the exponent is
+large enough that a shift of one standard deviation changes the answer by a
+factor of 118.
+
+\section{What this chapter has established}
+
+The keyhole is a narrow window in the tail of the along-track distribution.
+Its width is geometric and fixed. Its position is physical, and the physical
+assumptions that set its position are the same ones that set the object's
+size and density. And because the window sits in the tail, a small change in
+the physics is worth a large change in the probability.
+
+The next three chapters work through what that physical position depends
+on, and when it matters.
+
+\begin{keytakeaways}
+\item The impact probability is the fraction of the along-track distribution
+that falls inside a window whose width is fixed by the encounter geometry.
+\item The window's position relative to the distribution is physical, and it
+is the term a characterisation campaign moves.
+\item The published 2036 numbers are mutually consistent: a 616.16-metre
+keyhole at 4.77 sigma with an along-track sigma of 398.5 kilometres
+reproduces the published probability of \(7.07\times 10^{-9}\) exactly.
+\item At that position in the tail, a shift of one standard deviation in the
+keyhole centre changes the probability by a factor of 118.
+\end{keytakeaways}

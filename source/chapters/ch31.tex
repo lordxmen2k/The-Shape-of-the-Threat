@@ -1,0 +1,182 @@
+% =====================================================================
+%  Chapter 31 — The Worked Cases
+% =====================================================================
+
+\chapter{The Worked Cases}
+\label{ch:worked-cases}
+
+A rule is worth nothing until it has been run. This chapter runs the
+selection rule of Chapter 30 on the two documented cases, step by step, and
+shows the numbers that come out at each step.
+
+\section{Case one: 2024 YR4 at the 2032 lunar encounter}
+
+The inputs are the published ones: an effective diameter of 60.8 metres with
+an uncertainty of \(+1.8\) and \(-3.6\), an absolute magnitude of 23.93 from
+the Small-Body Database, a heliocentric distance near 1.1 astronomical units,
+a bulk density bracketed between 1,300 and 3,500 kilogrammes per cubic metre,
+and a close approach on 22 December 2032 at a lunar distance of 22,900
+kilometres.
+
+\textbf{Step 1, the required baseline.} The angular diameter at 22,900
+kilometres is 548 milliarcseconds. For four samples across the diameter at
+750 nanometres, the matched baseline is 1.13 metres; for seven samples it is
+1.98 metres. The aperture that resolves the disk outright is 0.345 metres.
+
+\textbf{Step 2, the over-resolution limit.} The half-visibility baseline is
+0.40 metres, which is below the matched baseline. This is not a wall, and
+the reason is worth stating because it is easy to get wrong: the
+half-visibility criterion is the limit of the \emph{centroid} mode, in which
+an unresolved source is located from the centre of the fringe pattern. A
+resolved body is imaged from the visibility function itself, out to the
+baseline where the signal is lost in the noise, and there the practical limit
+is the signal-to-noise rather than a visibility threshold. It is worth
+noticing that the uniform-disc visibility at the matched baseline is 0.068
+in this case and in every other, because the matched baseline is by
+definition the one at which the object's diameter spans four fringe
+spacings, and the visibility at that geometry is a constant.
+
+\textbf{Step 3, the astrometry.} The centroid precision at the matched
+baseline, with a signal-to-noise ratio of 7, is 19.6 milliarcseconds, which
+at 22,900 kilometres is a position of 2.17 metres. The lunar impact
+probability is set by the object's position on the Moon's surface, and the
+Moon's surface is thousands of kilometres across. A 2.17-metre position is
+vastly sufficient.
+
+And the range is not inferred at all: the observer's position is known to
+centimetres, so the range to an object at 22,900 kilometres is known to
+centimetres.
+
+\textbf{Step 4, buildability.} A 1.13-metre baseline is buildable on the
+Earth, in a laboratory. The interesting versions of this case are the ones
+where the object is not at a lunar distance.
+
+\textbf{Step 5, the window.} The object's brightness window at that
+distance is weeks.
+
+\textbf{Step 6, the condition.} This is where the case is decided, and it is
+decided against the lunar platform. The astrometric B-plane uncertainty for
+the 2032 encounter was 270,000 kilometres, reducible to 25,000 kilometres or
+less by a single extra observation, which the ground would achieve by the
+end of the apparition. Against that, the along-track displacement produced
+by a thirty per cent error in the Yarkovsky drift rate is 17.2 kilometres
+over seven years in the fastest case tabulated.
+
+The astrometric term dominates by three orders of magnitude. The rule
+declines the lunar platform for this target, and it should.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Case one: the rule applied to 2024 YR4 at the 2032 lunar
+encounter.}
+\label{tab:case1}
+\begin{tabularx}{\textwidth}{@{}P{0.61in}P{1.95in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Step} & \textbf{Result} & \textbf{Reading} \\
+\midrule
+1 & baseline 1.13 m; aperture 0.345 m & the object is resolved at a lunar
+distance \\
+\rowcolor{panel}
+2 & half-visibility baseline 0.40 m & beyond it, in the imaging mode; not a
+wall \\
+3 & 19.6 mas, or 2.17 m at the range & and the range is known directly \\
+\rowcolor{panel}
+4 & buildable & a short baseline is not the lunar argument \\
+5 & a window of weeks & no scheduling problem \\
+6 & astrometric term 3 orders larger & \textbf{decline the lunar platform} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Case two: Apophis at the 2029 Earth encounter}
+
+The inputs: a diameter of 325 metres, an absolute magnitude of 19.09, and a
+close approach on 13 April 2029 at 38,011 kilometres with a relative speed
+of 7.42 kilometres per second.
+
+\textbf{Step 1.} The angular diameter is 1.76 arcseconds. The matched
+baseline for four samples is 0.35 metres, and the aperture that resolves
+the disk is 0.107 metres.
+
+\textbf{Step 2.} The half-visibility baseline is 0.124 metres, again below
+the matched baseline, for the same reason.
+
+\textbf{Step 3.} The centroid precision at the matched baseline is 63.0
+milliarcseconds, which at 38,011 kilometres is a position of 11.6 metres.
+The range is direct and known to the centimetre, because the observer is on
+the Moon and the Moon's position is known.
+
+\textbf{Step 4.} A 0.35-metre baseline is buildable anywhere. The lunar
+argument does not rest on this case either.
+
+\textbf{Step 5.} The brightness window is a few days around the encounter.
+
+\textbf{Step 6.} And here the rule selects. The along-track standard
+deviation for the 2036 encounter is 398.5 kilometres. The diameter
+assumption alone is worth 507 kilometres of keyhole displacement, and the
+density assumption 379 kilometres. Each of them is comparable with the
+astrometric term, and neither of them is reduced by any quantity of
+additional astrometry.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Case two: the rule applied to Apophis at the 2029 encounter.}
+\label{tab:case2}
+\begin{tabularx}{\textwidth}{@{}P{0.61in}P{1.95in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Step} & \textbf{Result} & \textbf{Reading} \\
+\midrule
+1 & baseline 0.35 m; aperture 0.107 m & the object is resolved at a
+ten-thousand-kilometre range \\
+\rowcolor{panel}
+2 & half-visibility baseline 0.124 m & imaging mode again \\
+3 & 63.0 mas, or 11.6 m at the range & the range is direct \\
+\rowcolor{panel}
+4 & buildable & not the lunar argument \\
+5 & a window of days & schedulable \\
+6 & physical terms comparable with the astrometric sigma & \textbf{select
+the lunar platform} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{What the two cases together establish}
+
+
+Read together, the two cases say something that neither says alone.
+
+The measurement capability at a close encounter is not the scarce thing. A
+matched baseline of a metre, an aperture of a third of a metre and a
+position of a few metres are all obtainable. The scarce thing is the
+\emph{presence} at the encounter, and the presence is what the lunar
+platform offers.
+
+And the presence is worth what the physical terms are worth --- 507
+kilometres of keyhole displacement in the 2036 case, and 379 for the
+density --- and not one metre more.
+
+\begin{seamnote}{The book's own prediction, stated so it can be checked}
+For 2024 YR4, the book predicts that the resolved shape measured during the
+2032 lunar encounter will fix the volume, and that the energy implied will
+fall inside the published model set's range of 2.16 to 9.79 megatons rather
+than outside it. If the measured shape instead implies an energy outside
+that range, the book's account of the thermal-model degeneracy is wrong and
+the reason will be in the shape. That is the prediction that would fail
+first, and it is stated here so that it can be.
+\end{seamnote}
+
+\begin{keytakeaways}
+\item Both cases are resolved at the encounter range with a matched baseline
+of a metre or less and an aperture of a third of a metre, and the astrometric
+position is a few metres.
+\item At the 2024 YR4 encounter the astrometric term dominates by three
+orders of magnitude and the rule declines the lunar platform.
+\item At the Apophis encounter the physical terms are comparable with the
+astrometric standard deviation and the rule selects it.
+\item The scarce thing is not the measurement but the presence at the
+encounter, and the presence is worth the physical term and no more.
+\end{keytakeaways}

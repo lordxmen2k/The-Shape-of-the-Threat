@@ -1,0 +1,159 @@
+% =====================================================================
+%  Chapter 17 — Lightcurve Inversion\idx{Lightcurve inversion} and the Convex Hull
+% =====================================================================
+
+\chapter{Lightcurve Inversion and the Convex Hull}
+\label{ch:lightcurve}
+
+The lightcurve inversion\idx{Lightcurve inversion} is the workhorse of asteroid characterisation. It
+has produced more shape models than every other method combined, it uses
+telescopes that already exist, and it returns a coherent three-dimensional
+body with a spin axis and a rotation period. This chapter asks what it
+returns and what the answer costs.
+
+\section{What the inversion does}
+
+The procedure is standard and worth stating in full, because the place the
+assumption enters is usually a single sentence that is easy to miss.
+
+A set of photometric observations of a rotating body is recorded. A model is
+constructed: a shape, an orientation and a rotation rate, such that the
+model's predicted brightness variation as it rotates matches the observed
+variation. The model parameters are then searched for the best fit.
+
+The fitted parameters are the rotation period, the direction of the spin
+pole, and the shape. The shape that comes out of the standard inversion is
+the \emph{convex hull} of the body consistent with the observations ---
+because the constraint set is not convex and the hull is the standard way to
+report a single answer from it.
+
+The assumption is not a modelling convenience. It is the statement that the
+body is convex, and it is made silently, because a convex body is the
+simplest consistent answer and because the database that holds these models
+records it.
+
+\section{What the record contains}
+
+The scale of the effort is remarkable and it is the reason the method
+dominates the field. The asteroid models database\idx{Asteroid models database} reached roughly 25,000
+models by October 2026, a figure that tripled the catalogue in five years.
+The sample underlying the most recent analysis covered 881 near-Earth
+asteroids, of which 47 received a model.
+
+The throughput comparison that comes with it is the most useful summary of
+the field's measurement history there is. Taken across the epochs of the
+field's major reviews, the number of resolved shape models produced by each
+method has moved as follows:
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Resolved shape models by method, across the epochs of the field's
+major reviews. The figures are the accumulated totals.}
+\label{tab:throughput}
+\begin{tabularx}{\textwidth}{@{}P{1.15in}P{0.78in}P{0.78in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Method} & \textbf{Earliest} & \textbf{Latest} & \textbf{Comment} \\
+\midrule
+Interferometry & 5 & \(10^{2}\) & the only resolved method with a
+projected hundred \\
+\rowcolor{panel}
+Photometry & 30 & \(10^{4}\) & the workhorse; lightcurve inversions \\
+Fly-by & 6 & fewer than 15 & one per spacecraft encounter \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\tabref{tab:throughput} contains the argument of this book in one line.
+Interferometry, the only method that produces a resolved shape without
+requiring proximity, is the lowest-yield resolved method in the field, and
+the field's own roadmap projects a hundred of them. The ten thousand
+photometric inversions are low-order convex bodies. The fewer than fifteen
+fly-by images are the only true three-dimensional shapes in existence.
+
+\section{The cost of the convexity, and the evidence for it}
+
+The question the convex-hull assumption raises is quantitative: how wrong is
+a convex hull, for a real small body?
+
+The best available evidence is the one measurement that bypassed the
+question, and it is the 2017 radio occultation of (372) Palma discussed in
+Chapter 8. The silhouette it measured was slightly elongated and had a
+concave edge, and the roundness\idx{Roundness} parameter --- the ratio of the inscribed to
+the circumscribed circle --- had a mean of 0.866 with a standard deviation of
+0.093 over the fitted shape ensemble, giving a departure from a perfect
+circle of ten to twenty per cent.
+
+Twenty per cent is not a small number, and it is worth being precise about
+what it does and does not imply. The roundness\idx{Roundness} parameter is a two-dimensional
+measure of the silhouette. It is not the volume error. A body that is
+slightly elongated in projection may be considerably less voluminous than
+its convex hull if it is also concave, and considerably more voluminous than
+its projection if it is oblate in the third dimension. The honest statement
+is a bound and a direction: \textbf{real small bodies depart from the
+convex ideal by tens of per cent in their silhouettes, so convex-hull volumes
+carry systematic errors of that order, and the errors are one-sided --- the
+hull is always at least as large as the body.}
+
+\begin{seamnote}{Why the one-sidedness is good news}
+Because the convex hull always overstates the volume, and therefore
+overstates the mass at a fixed density, a lightcurve inversion\idx{Lightcurve inversion} tends to
+overstate the energy. That is a conservative error in the direction of
+concern. It is also an error that nobody has bounded, because the field does
+not have the resolved silhouettes of small bodies against which to bound it.
+A single measurement that would bound it exists, and it is the measurement
+the rest of this book is about.
+\end{seamnote}
+
+\section{The second limitation, which is not about shape}
+
+The convex hull is the assumption that gets discussed. The limitation that
+gets less attention is that a lightcurve inversion returns a shape, and a
+shape is not a size.
+
+The diameter that goes into the energy chain is not the diameter of the
+shape model. It is the diameter consistent with the model's projected area
+and the object's absolute magnitude --- which is a photometric inversion with
+its own assumptions, and which carries the albedo into the answer. The
+lightcurve inversion therefore delivers a shape, and then a separate step
+turns the shape into a diameter, and that step is where the albedo
+degeneracy re-enters.
+
+A resolved image does not have this problem in the same way, because the
+projected area is measured directly and the albedo is an output rather than
+an input. That difference is the entire content of the argument in
+\tabref{tab:routes}.
+
+\section{What the method is good for}
+
+It is worth ending this chapter by saying plainly what the lightcurve
+inversion is good for, because the chapter is not a criticism of it.
+
+It is good for the spin state. The period and the pole are its strongest
+products, they are obtained from telescopes that exist, and they are needed
+by everything downstream. The pole enters the Yarkovsky drift through
+\(\cos\gamma\); the period enters the YORP torque and the lightcurve
+amplitude that goes with it.
+
+It is good for identifying the objects worth looking at. A lightcurve is
+cheap and it is fast, and an object whose lightcurve shows a large amplitude
+and a short period is an object whose shape matters.
+
+It is good for finding the objects that a close approach will change. The
+spin state is the observable through which a close encounter reveals the
+mass distribution, and the lightcurve is how the spin state is measured.
+
+What it is not good for is the volume. And the volume is what the energy
+chain is built from.
+
+\begin{keytakeaways}
+\item The standard lightcurve inversion returns the convex hull of the
+consistent set, so the convexity assumption is made silently.
+\item The field has produced roughly 25,000 photometric models against fewer
+than fifteen fly-by shapes and a projected hundred interferometric ones.
+\item The Palma silhouette shows real bodies departing from the convex ideal
+by tens of per cent, and the hull error is always one-sided.
+\item The lightcurve's strongest products are the period and the pole, and
+its weakest is the volume, which is the quantity the energy chain needs.
+\end{keytakeaways}

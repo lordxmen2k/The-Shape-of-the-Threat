@@ -1,0 +1,176 @@
+% =====================================================================
+%  Chapter 22 — The \idxw{Baseline} the Moon Gives and the Baseline\idx{Baseline} It Does Not
+% =====================================================================
+
+\chapter{The Baseline the Moon Gives and the Baseline It Does Not}
+\label{ch:baseline}
+
+Chapter 20 established the requirement: an asteroid shape imager needs a
+baseline\idx{Baseline} of hundreds of metres to a few kilometres, matched to the target's
+angular size. This chapter asks whether the Moon can provide it, and the
+answer is yes for a specific reason that has nothing to do with the Moon
+being far away.
+
+\section{The construction problem and the atmosphere problem}
+
+A terrestrial optical array with a baseline\idx{Baseline} of a kilometre has three
+simultaneous difficulties, and they are of different kinds.
+
+The \emph{atmospheric} difficulty is that a kilometre of atmosphere is not a
+stable optical element. The index of refraction along a kilometre of air
+varies with temperature and pressure, and the path length between two
+apertures separated by a kilometre changes by a comparable amount. The
+optical path difference that an interferometer measures has to be stable to
+a small fraction of a wavelength, and a kilometre of air is not.
+
+The \emph{metrological} difficulty is that the two apertures must be
+surveyed relative to each other to a fraction of the path stability
+required, and a terrestrial baseline is subject to seasonal ground motion,
+to thermal expansion of the structures that carry it, and to the slow
+deformation of the crust.
+
+The \emph{construction} difficulty is that a kilometre-long structure has to
+be built, aligned and maintained on a surface that is not flat, and that
+has to be done in a way that survives weather.
+
+The important observation is that these three difficulties are not
+independent. On the Earth they are coupled through the atmosphere: the
+instrument has to be built on the ground because the atmosphere is above the
+ground, and it has to be metrologically stable because the atmosphere is
+changing, and it has to be maintained because the ground moves.
+
+On the Moon, the coupling is broken. The ground is rigid and airless and
+slowly rotating, with no thermal expansion of a truss to worry about and no
+weather and no hydrology. A baseline on the Moon is defined by the distance
+between two surveyed anchor points, and the surveying problem is a lunar
+geodesy problem rather than an optical-metrology\idx{Metrology} problem.
+
+\begin{seamnote}{This is the defensible lunar claim, and it is narrow}
+Not ``the Moon offers a unique vantage point''. Not ``the Moon is closer to
+the objects''. The claim is that the lunar surface is the only site where
+the kilometre-scale baseline that shape imaging requires can be built,
+because the construction problem can be separated from the atmosphere
+problem. That is a much smaller claim than the concept literature's, and it
+is the one that survives the arithmetic.
+\end{seamnote}
+
+\section{The stability argument, and what it is worth}
+
+The concept literature's stability statement is worth reading precisely:
+``having the interferometer fixed to the lunar surface keeps the baseline
+very stable, reducing measurement uncertainties''.
+
+The physical content is this. A baseline fixed to a rigid, airless body
+does not move relative to the body, and the body's orientation relative to
+the distant stars is predictable from its rotation. The vector from one
+aperture to another therefore has a known direction to a precision set by
+the anchor-point survey, and the direction is not corrupted by the
+atmosphere's index variations or by the ground's seasonal motion.
+
+What the argument does not say is that the Moon is a good place to build
+anything. The regolith is abrasive, the night is long, and the dust is a
+mitigation problem with a demonstrated but unproven long-term solution.
+Chapter 24 takes the engineering envelope apart. The point of the stability
+argument is narrower: it identifies a property that a terrestrial array
+cannot have, and that a lunar array can have at a scale that matters.
+
+\section{The baseline the Moon does not give}
+
+Two things have to be said about what the lunar surface does not provide,
+and the first of them is the more awkward of the two.
+
+It does not provide the length of baseline that the radio interferometry of
+Chapter 8 used. The Very Long Baseline Array reached 1,200 to 2,300
+kilometres with the planets as reflectors, and the effective baseline of
+that technique came from the Earth's own diameter. A lunar surface array
+cannot reach that, and does not need to: the optical wavelength is 750
+nanometres rather than 4.2 centimetres, and the required baseline is
+correspondingly shorter.
+
+It does not provide proximity. The Moon is not closer to the near-Earth
+objects than the Earth is; at a close approach it may be closer or
+considerably farther, depending on the geometry. The lunar advantage is
+not range. It is the stability of the baseline, the length of the observing
+window, and the Sun-ward access.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{The three lunar advantages against the terrestrial alternative, and
+what each is worth to the shape measurement.}
+\label{tab:baseline-compare}
+\begin{tabularx}{\textwidth}{@{}P{1.22in}P{1.34in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Property} & \textbf{Terrestrial array} & \textbf{Lunar array} \\
+\midrule
+Baseline length & a few hundred metres is already at the limit & a few
+hundred metres to kilometres is a construction problem, not an optical one \\
+\rowcolor{panel}
+Path stability & atmospheric and seasonal & set by the anchor-point survey
+alone \\
+Observing window & hours, per night & days \\
+\rowcolor{panel}
+Orthogonal orientation & a second instrument, or a transport delay & 6.83
+days, delivered by the rotation \\
+Sun-ward access & structurally excluded & available at a polar site \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{The array the requirement implies}
+
+Putting Chapter 20's requirement together with this chapter's engineering
+gives the array specification, and it is worth stating in the form a
+programme would use.
+
+The array is a set of fixed apertures at surveyed separations spanning
+roughly 300 metres to 3 kilometres, at a site with a low horizon in the
+direction of the objects of interest. The station selects the aperture pair
+whose separation matches the target's angular size, so that the number of
+samples across the diameter is in the range four to seven.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{The matched separations the array has to provide, for the class of
+interest, at four samples and seven samples across the diameter.}
+\label{tab:array-separations}
+\begin{tabularx}{\textwidth}{@{}P{0.78in}P{0.90in}P{1.02in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Diameter} & \textbf{Distance} & \textbf{Four samples} &
+\textbf{Seven samples} \\
+\midrule
+60 m & 0.1 AU & 748 m & 1,309 m \\
+\rowcolor{panel}
+60 m & 0.2 AU & 1,496 m & 2,618 m \\
+60 m & 0.5 AU & 3,740 m & 6,545 m \\
+\rowcolor{panel}
+140 m & 0.1 AU & 321 m & 561 m \\
+140 m & 0.2 AU & 641 m & 1,122 m \\
+\rowcolor{panel}
+140 m & 0.5 AU & 1,603 m & 2,805 m \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The separations in \tabref{tab:array-separations} span a factor of twelve,
+from 321 metres to 6,545 metres, and they change with the distance to the
+target, which changes with the object's orbit and therefore with the season.
+A single-baseline instrument cannot serve this table. An array with a
+discrete set of anchor separations can, and the selection rule that chooses
+the pair is a rule about the target, not about the instrument.
+
+\begin{keytakeaways}
+\item A terrestrial kilometre-scale array is simultaneously an atmospheric, a
+metrological and a construction problem; on the Moon the construction
+problem separates from the atmosphere problem.
+\item The Moon does not give a longer baseline than the radio technique of
+Chapter 8, and it does not give proximity; it gives stability, window length
+and Sun-ward access.
+\item The baseline orientation requirement is met by the Moon's own rotation
+in 6.83 days, with no moving hardware.
+\item The array must offer separations from 321 metres to 6,545 metres, which
+means selectable anchor pairs rather than a single interferometer.
+\end{keytakeaways}

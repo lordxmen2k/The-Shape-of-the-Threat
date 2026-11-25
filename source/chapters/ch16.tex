@@ -1,0 +1,154 @@
+% =====================================================================
+%  Chapter 16 — Generalised Projections and the \idxw{Uniqueness} Theorems
+% =====================================================================
+
+\chapter{Generalised Projections and the Uniqueness Theorems}
+\label{ch:projections}
+
+Every shape measurement in this book is a projection. A photograph of a
+rotating body is the body's silhouette against the sky, taken along a
+direction that changes as the body turns. A radar image is a projection\idx{Projection} of a
+different kind, reconstructed from the delay and the Doppler shift of an
+echo. An interferometric image is a projection\idx{Projection} reconstructed from the
+visibility and the phase of a fringe pattern.
+
+This chapter asks the question that underlies all of them: what can be
+determined from a projection\idx{Projection}, and how many of them are needed?
+
+\section{What a single projection gives}
+
+A projection along a fixed direction of a convex body\idx{Convex body} gives the outline of
+its shadow: a convex region whose area is the body's projected area and
+whose shape is the body's projected shape. From that one outline, three
+things follow immediately --- the projected area, the projected extent in
+two orthogonal directions, and the rotation phase at which the projection
+was taken.
+
+Three things do not follow, and the list is worth keeping in view because it
+is the whole of Chapter 8's argument:
+
+The volume does not follow. A sphere and a flat disk of the same projected
+area have the same silhouette and volumes differing by a factor of three.
+The projected area constrains the volume only to within the range that the
+convex hull of the silhouette allows.
+
+The three-dimensional shape does not follow. A body of revolution\idx{Body of revolution} and an
+ellipsoid with the same silhouette are indistinguishable in a single
+projection, and so are a thousand non-convex bodies whose shadow agrees.
+
+The orientation of the body in space does not follow, beyond the two
+projected axes. The direction of the spin pole is what fixes it, and a
+single projection does not fix the pole.
+
+\section{Why the classical uniqueness results matter}
+
+The theory of reconstructing a body from its projections is old and precise,
+and three of its results are directly relevant.
+
+A convex body\idx{Convex body} is uniquely determined by the set of all its orthogonal
+projections. This is the strongest statement and the least useful, since it
+requires infinitely many.
+
+A body of revolution\idx{Body of revolution} is determined by a single projection along its axis of
+symmetry. This is the strongest useful statement, and it is why the
+rotation state of an asteroid is such valuable information: a body that is
+close to a body of revolution\idx{Body of revolution} can be characterised from one projection, and
+the residual error is a measure of how far from a body of revolution it is.
+
+And a general body requires a family of projections. For a convex body\idx{Convex body}, the
+projections onto a small number of suitably chosen directions --- in the
+limit, three generic directions for a polytope --- can determine it, but
+``suitably chosen'' is a real constraint: the directions must not share a
+degenerate relationship, and a single direction never suffices.
+
+\section{What the rotation supplies}
+
+This is where the astrophysical case differs from the geometric one, and the
+difference is favourable in a way that is not obvious before it is stated.
+
+A body on the ground is observed from essentially one direction, and that
+direction is fixed by where the observer is. As the body rotates, the
+\emph{body's} orientation changes but the \emph{projection direction} does
+not. What changes is the shape of the projected outline, because the body
+presents different parts of itself to the observer.
+
+That is the whole content of the lightcurve. The brightness of a rotating
+body varies because the projected outline and the projected brightness
+distribution vary. The variation has a period, and the period is the
+rotation period.
+
+So the body does supply a family of projections --- the set of all its
+projections over a full rotation. For a body whose projection changes
+sufficiently with phase, the set of projections over one rotation carries
+the information of a band of directions, and it is that band, rather than a
+single outline, that the inversion uses.
+
+\begin{deeper}{Why the inversion is nevertheless not unique}
+The band is not the whole sphere of directions. The projections obtained
+over one rotation all share the same viewing direction and differ only in
+the body's orientation about one axis, so the reconstruction is a body of
+revolution about that axis --- up to the non-convexity, which the
+projections at different phases can partly expose. The practical result is
+the familiar one: a single lightcurve admits a family of shapes and a
+family of pole directions, and the standard inversion returns the convex
+hull of that family. Additional lightcurves at different apparitions, or a
+single resolved image that fixes the geometry directly, are what break the
+degeneracy.
+\end{deeper}
+
+\section{What this implies for the measurement hierarchy}
+
+The hierarchy of methods in the field follows from this, and it explains why
+the cheapest methods produce the least certain results.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{What each measurement family determines, and the assumption each
+one carries.}
+\label{tab:hierarchy}
+\begin{tabularx}{\textwidth}{@{}P{1.24in}P{1.32in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Method} & \textbf{Determines} & \textbf{Carries} \\
+\midrule
+Lightcurve & period, pole, low-order shape & convexity; the band of
+projections is not the whole sphere \\
+\rowcolor{panel}
+Disk image & the projected outline at one epoch & the shape of that
+outline; the volume still needs a model \\
+Radar image & the three-dimensional shape directly & the geometry of the
+measurement \\
+\rowcolor{panel}
+Interferometric image & the projected outline at high angular resolution &
+the visibility model, and the matching of the baseline to the target \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The last row is where the book's argument goes next. An interferometric
+image is, in principle, the best of the four, because the angular resolution
+it delivers is a function of the baseline rather than of the target's
+distance, and because the resolution can be set by choosing the baseline
+rather than by waiting for a close approach.
+
+The catch is that an interferometer does not produce a picture by itself. It
+produces a visibility and a phase, and the picture is reconstructed from
+those, and the reconstruction has an assumption attached: a model of what
+the body's brightness distribution looks like on the sky. That model is the
+subject of Chapter 20.
+
+\begin{keytakeaways}
+\item A single projection determines the projected area and the projected
+extent, and does not determine the volume, the three-dimensional shape or
+the orientation.
+\item The rotation supplies a band of projections rather than a single one,
+which is why a lightcurve carries more information than a single image ---
+and why it still returns a convex hull.
+\item The classical uniqueness\idx{Uniqueness} results set the target: a body of revolution
+is determined by one axial projection, and a general convex body needs a
+family.
+\item An interferometer's resolution is set by the baseline rather than by
+the distance, which is why it is the only method that can image a small
+object without waiting for a close approach.
+\end{keytakeaways}

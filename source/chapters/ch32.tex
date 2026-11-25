@@ -1,0 +1,169 @@
+% =====================================================================
+%  Chapter 32 — The Prior Art\idx{Prior art} and the Honest \idxw{Novelty} Claim
+% =====================================================================
+
+\chapter{The Prior Art and the Honest Novelty Claim}
+\label{ch:prior-art}
+
+A proposal that has been in the literature for twenty-three years cannot be
+presented as new, and a book that pretended otherwise would be making a
+claim its own chapters would contradict. This chapter maps the prior art\idx{Prior art}
+and states, as precisely as the evidence allows, what is new here.
+
+\section{The map}
+
+Every identifier in this table was resolved against a registry before the
+reference was used.
+
+\begin{table}[!htbp]
+\centering
+\footnotesize
+\caption{The prior-art map. Every candidate architecture in the original
+concept, and its status.}
+\label{tab:prior-art}
+\begin{tabularx}{\textwidth}{@{}P{1.15in}P{1.55in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Candidate} & \textbf{Prior art, verified} & \textbf{Status} \\
+\midrule
+Lunar wide-field optical survey &
+\code{arXiv:2611.05435}; CAPS NTRS 20030014831 and 20050186565 &
+\textbf{Covered.} The lead-time table is published \\
+\rowcolor{panel}
+Lunar surface optical interferometer &
+CAPS 2003, Table 1; \code{arXiv:2510.24901}; \code{arXiv:2408.04699} &
+\textbf{Covered, and a mature, heavily funded field.} Not a gap \\
+\rowcolor{panel}
+Lunar bistatic radar &
+\code{arXiv:1810.08712}; \code{arXiv:1908.05171} &
+\textbf{Covered.} The range law is the limit, not the site \\
+Cislunar optical survey and catalogue layer &
+Lunar Sentinel, September 2026; \code{arXiv:2609.10663};
+\code{arXiv:2604.10807} &
+\textbf{Heavily covered} \\
+\rowcolor{panel}
+Space-based characterisation telescope &
+\code{arXiv:2609.03371}; \code{arXiv:2609.02571}; NEO Surveyor; Roman &
+\textbf{Heavily covered} \\
+Low-Earth-orbit characterisation constellation &
+\code{arXiv:2301.10348} &
+\textbf{Covered} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\tabref{tab:prior-art} is the map, and it is not encouraging for the original
+concept in its original form. Every architecture the owner's instinct
+produced has been proposed, and most of them have been funded.
+
+\section{What is genuinely not covered}
+
+Three things are not in the literature, and they are of different kinds.
+
+The first is negative, and it is the book's own correction. A lunar
+\emph{thermal-infrared} station, with its background budget worked out, does
+not appear in the literature. The 2026 extreme-environment study names
+infrared monitoring stations and lunar polar observatories as asset classes
+within a general Earth-Moon network and refers to the illumination conditions
+and stable thermal environments near permanently shadowed regions, but it
+specifies no surface mid-infrared instrument, no background budget, no power
+architecture and no service model.
+
+That gap is now closed, and closed against the lunar case: Chapter 23 works
+the arithmetic out and the thermal channel loses to Sun-Earth L1. The
+contribution here is the demonstration that the gap was a gap and that it
+should not be filled.
+
+The second is the substantive one. The lunar interferometry literature is
+sized for \emph{astrometry}, and its 100-metre baselines are consistent
+with that: the 2003 concept study's own design point is a visual magnitude
+of 27 with a fringe visibility of 0.5, and its stated purpose is a drop in
+the orbit-determination error. The recent lunar optical interferometry study
+proposes a 100-metre baseline with 30-centimetre apertures over 450 to 850
+nanometres, and the NIAC lunar imager is an astronomical instrument. The
+2025 study spans ultraviolet to mid-infrared wavelengths but its baseline
+design is optical, with a 30-centimetre aperture, a 100-metre baseline,
+2-nanometre path measurement and a 5-metre main delay line.
+
+Chapter 20's re-derivation establishes what the shape-imaging requirement
+actually is, and it is not what those numbers are sized for. A
+kilometre-scale optical baseline, matched to the target's angular size, for
+the purpose of imaging rather than locating, does not appear in the lunar
+literature.
+
+The third is the one this book has derived and the literature does not
+contain. The Earth-Moon baseline is a known quantity to millimetres. The
+cislunar sensor-network modelling compares Earth-based, space-based and
+lunar-surface-based observers and finds that lunar observers enjoy smaller
+distances and better observability --- and names the Moon's horizon, the
+necessity of clustering, and the logistics of operating a lunar station as
+the drawbacks. That is an argument about observers.
+
+It is not an argument about a \emph{ranging baseline}. The consequence of
+putting the Earth and the Moon in the same frame and using the 384,400
+kilometres between them as a parallax baseline is a range measurement with
+no model in it, and the book found no published treatment of it for a
+non-cooperative near-Earth target at close approach.
+
+\section{What is claimed, precisely}
+
+The claim is therefore bounded, and it is stated in the form the owner
+asked for: \emph{a definite solution, novel if it can honestly be said to
+be novel}.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{What is claimed and what is not.}
+\label{tab:claims}
+\begin{tabularx}{\textwidth}{@{}P{2.57in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Claim} & \textbf{Status} \\
+\midrule
+The hardware is new & \textbf{No.} It is twenty-three years old and heavily
+worked \\
+\rowcolor{panel}
+A lunar surface interferometer for asteroids & \textbf{No.} Proposed, and
+proposed repeatedly \\
+\rowcolor{panel}
+A lunar thermal-infrared station with a worked budget & \textbf{No.} The
+gap is demonstrated here and closed against the lunar case \\
+\rowcolor{panel}
+The shape-imaging baseline requirement, re-derived & \textbf{Yes.} The
+concept study's own table reproduces as \(\lambda/(4\theta)\), and the
+requirement follows \\
+\rowcolor{panel}
+The Earth-Moon two-station range to a non-cooperative target & \textbf{Yes,}
+as far as this search found, and the derivation is published here \\
+\rowcolor{panel}
+The first quantitative argument for where in the planetary-defence
+architecture a lunar platform earns its place & \textbf{Yes.} Together with
+the error budgets and the selection rule that decide it \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\tabref{tab:claims} is the honest statement, and its final row is the one
+the book stands on. The contribution is of position and of quantification,
+not of hardware. The analysis is new; the instrument is not.
+
+\begin{seamnote}{Why a bounded claim is stronger than a broad one}
+A broad claim invites the reader to check the hardware, where twenty-three
+years of work will defeat it. A bounded claim invites the reader to check
+the arithmetic, which is where the book has put everything it has. The
+strongest defence of a proposal of this kind is that the re-derivation is
+reproducible and the rule can be run against the reader's own targets and
+declined where it should be.
+\end{seamnote}
+
+\begin{keytakeaways}
+\item Every architecture in the original concept has been proposed, and most
+have been funded; the original claim cannot be made.
+\item The lunar interferometry literature is sized for astrometry, and the
+kilometre-scale shape-imaging baseline requirement is not in it.
+\item The Earth-Moon two-station range to a non-cooperative target is the
+book's derived result, and no published treatment was found.
+\item The claim is about position and quantification, not about hardware, and
+it is stated in the form the evidence allows.
+\end{keytakeaways}

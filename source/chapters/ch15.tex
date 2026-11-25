@@ -1,0 +1,163 @@
+% =====================================================================
+%  Chapter 15 — Why More Data Can Make the Answer Worse
+% =====================================================================
+
+\chapter{Why More Data Can Make the Answer Worse}
+\label{ch:more-data}
+
+There is a feature of impact monitoring\idx{Monitoring} that unsettles people who meet it
+for the first time, and it is worth naming plainly because it undermines the
+simplest possible story about how the discipline works. A better orbit can
+produce a \emph{higher} impact probability. A more accurate measurement can
+make an object look more dangerous than it did before. And a careful
+characterisation campaign can move an object \emph{out} of a keyhole and
+leave the probability higher than it started.
+
+None of this is a malfunction. All of it follows from the fact that the
+impact probability is a conditional probability, and conditions renormalise.
+
+\section{Where the probability actually comes from}
+
+The impact probability is not a property of the object. It is a property of
+the object \emph{given the observations}, and it is computed by propagating
+the observation-conditioned distribution of the object's position to the
+encounter epoch and asking what fraction of that distribution collides.
+
+Two consequences follow immediately.
+
+The first is that the probability is always conditional on something. It is
+conditional on the orbital solution, on the arc, on the data reduction, on
+the physical parameters. When any of those changes, the probability changes,
+and it changes in whichever direction the new information points --- which
+may be upward.
+
+The second is that the probability is a density ratio, and a density ratio
+moves when the denominator moves. If a refinement of the orbit removes
+probability mass from the region that would have collided, the total
+probability mass has to go somewhere, and the probability of collision rises.
+
+\begin{seamnote}{The regression that alarms people}
+The 2024~YR4 episode is a live instance of the general phenomenon, and the
+NASA review of it describes the sequence of revisions to the object's
+Earth-impact probability as the orbit was refined. The revisions did not
+monotonically decrease the number. This is expected behaviour, and an
+organisation that treats a rising number as a failure will make exactly the
+wrong decisions.
+\end{seamnote}
+
+\section{Why more astrometry cannot fix a physical error}
+
+There is a structural asymmetry here, and it is the reason the previous
+chapter's arithmetic has the force it does.
+
+The astrometric uncertainty enters the probability through \(\sigma_\zeta\),
+the width of the along-track distribution. More astrometry --- more
+observations, a longer arc, a better weighted solution --- reduces
+\(\sigma_\zeta\), and the keyhole's probability falls as the distribution
+narrows around a fixed keyhole position. The mechanism is well behaved and
+monotone, and it is the reason the community's answer to a tail keyhole is
+always ``observe more''.
+
+The physical uncertainty enters the probability through the keyhole's
+\emph{position}. A better measurement of the diameter or the density changes
+where the object will be at the encounter epoch, and therefore changes
+whether the keyhole lands on it. This mechanism is not monotone in either
+direction. It can move the object into the keyhole or out of it.
+
+The consequence for a programme is uncomfortable but plain. \textbf{There is
+no quantity of astrometry that removes a physical error from an impact
+probability.} The astrometric term can be driven towards zero; the physical
+term can only be driven towards zero by measuring the physics.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{The two terms, and what reduces each of them.}
+\label{tab:terms}
+\begin{tabularx}{\textwidth}{@{}P{1.28in}P{1.28in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Term} & \textbf{Reduced by} & \textbf{Behaviour} \\
+\midrule
+Astrometric & more observations, longer arc & monotone; the probability
+falls \\
+\rowcolor{panel}
+Physical & measuring the size, the density, the spin state & not monotone; the
+probability may rise or fall \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{The three forms of the paradox}
+
+The first is the refinement regression: a better orbit raises the
+probability because the previous probability was an artefact of the
+conditioning. The community's response is correct --- keep observing --- and
+the number falls again once the solution is better still.
+
+The second is the physical update: a measurement of the object's diameter or
+density moves the keyhole centre and the probability moves with it, in
+whichever direction. Here the community's response must be the opposite of
+the first. Observing more will not help, because the error is not
+astrometric. Measuring the physics is the only route, and it is the route
+that is not funded.
+
+The third is the keyhole exit. An object whose probability is high because it
+sits in a keyhole has its probability \emph{fall} when the keyhole's centre
+is refined away from it, and the fall can be dramatic, because the tail
+magnifies the displacement in both directions. This is the good outcome, and
+it can look like a mistake in the reporting.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{The three behaviours, and what each one calls for.}
+\label{tab:paradoxes}
+\begin{tabularx}{\textwidth}{@{}P{1.32in}P{1.24in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Form} & \textbf{What it looks like} & \textbf{What is actually
+required} \\
+\midrule
+Refinement regression\idx{Regression} & the probability rises as the orbit improves &
+keep observing; this is the astrometric term \\
+\rowcolor{panel}
+Physical update & the probability moves when the size or density is
+measured & measure more physics; observing will not help \\
+Keyhole exit & the probability falls sharply as the centre is refined &
+nothing further, but do not treat it as an error \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Why this is the argument for characterisation rather than for monitoring}
+
+The monitoring\idx{Monitoring} machinery of the planetary-defence establishment is built on
+the first and third of these behaviours and is good at them. It is not
+built for the second, because the second requires an instrument, a target
+list and an alert path, and none of the three exists in the shape the
+situation needs. The documented position, from the 2025 NASA review of the
+2024~YR4 episode, is that no automated system currently alerts physical
+characterisation sites.
+
+So the paradox is not only a scientific curiosity. It is the mechanism by
+which the gap in Part I becomes dangerous rather than merely untidy. A
+catalogue that contains 11,725 catalogued objects in the hazard class and
+about 9,966 of them without any physical account contains, in statistical
+form, 9,966 objects whose keyhole position is unknown. When one of those
+objects turns out to be on a trajectory that passes near the Earth, the
+monitoring\idx{Monitoring} machinery will do what it does: it will observe, refine, and
+renormalise. And the probability it reports will depend on physical
+assumptions that nobody has measured.
+
+\begin{keytakeaways}
+\item The impact probability is conditional, and a conditional probability
+renormalises, so a better orbit can produce a higher probability.
+\item The astrometric term is monotone and cheap to reduce; the physical
+term is not monotone and no quantity of astrometry reduces it.
+\item A physical update that raises the probability is not a malfunction,
+and it is the case in which observing more is the wrong response.
+\item Nine thousand nine hundred and sixty-six objects in the hazard class
+carry an unknown keyhole position, and the machinery to measure it does not
+exist.
+\end{keytakeaways}

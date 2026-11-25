@@ -1,0 +1,192 @@
+% =====================================================================
+%  Chapter 28 — The \idxw{Portfolio} Decision
+% =====================================================================
+
+\chapter{The Portfolio Decision}
+\label{ch:portfolio}
+
+A platform is not justified by what it can do. It is justified by what it
+does that nothing else does, at a cost the decision can bear, against a
+requirement that is written down. This chapter is the book doing that
+arithmetic, and it is written in the form a programme would use it.
+
+\section{The jobs to be done}
+
+The accountability chain of Chapter 10 defines the work. Each link needs a
+measurement, and each measurement needs an instrument. Naming the jobs
+first is what stops the comparison from becoming an argument about
+instruments.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{The jobs, and what each one is worth.}
+\label{tab:jobs}
+\begin{tabularx}{\textwidth}{@{}P{0.78in}P{1.78in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Job} & \textbf{Deliverable} & \textbf{What it is worth} \\
+\midrule
+J1 & a diameter, without a thermal model & removes a factor of 1.68 in
+energy \\
+\rowcolor{panel}
+J2 & a density & removes a factor of 2.69 in energy \\
+J3 & a resolved shape and a pole & the volume, and the spin state that
+YORP depends on \\
+\rowcolor{panel}
+J4 & a mass & the density, and with it J2 \\
+J5 & an energy & the hazard class \\
+J6 & an impact probability at a long horizon & the keyhole position \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The jobs are not equal in value, and \tabref{tab:jobs} is how they are
+ranked. J1 and J2 are worth a factor of 4.5 in energy between them. J6 is
+worth a factor of 433 in the impact probability in the tail regime of
+Chapter 14, and nothing at all in the near regime.
+
+\section{The scorecard}
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{The portfolio scorecard. Each platform is scored against the jobs
+it can close, the population it reaches, and the limit that binds it.}
+\label{tab:scorecard}
+\begin{tabularx}{\textwidth}{@{}P{1.11in}P{0.72in}P{0.88in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Platform} & \textbf{Jobs} & \textbf{Population} & \textbf{Binding
+limit} \\
+\midrule
+Ground survey and lightcurve & J3 (partly) & thousands & the convex hull \\
+\rowcolor{panel}
+Ground adaptive optics & J1, J3 & a handful & close approach and phase
+angle \\
+Ground bistatic radar & J1, J2, J3, J4 & dozens & the fourth-power wall
+and the radar-crossing selection \\
+\rowcolor{panel}
+NEO Surveyor and NEOMIR & J1 & the whole discovery stream & a model, and no
+shape or mass \\
+3.5 m space telescope & J3 (photometry) & survey plus rapid response & no
+mid-infrared channel \\
+\rowcolor{panel}
+Low-Earth-orbit constellation & J1, J3 (partly) & proposed & orbit and
+brightness \\
+Lunar surface array & J1, J3, J4 at an encounter, J6 & 37 per year, on
+request & the baseline, the dust and the night \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The scorecard is not a ranking, because the jobs are not interchangeable.
+It is a map of coverage, and it shows three things.
+
+The thermal channel is covered, twice, by funded missions. Nothing needs to
+be built there, and the proposal should not attempt it.
+
+The shape channel is covered thinly and intermittently: by close-range
+images, by radar for a small radar-crossing minority, and by convex
+lightcurve inversions for everything else. This is the gap.
+
+The mass channel is covered by radar, for a few dozen objects, and by
+nothing else. It is the smallest gap in terms of population and the largest
+in terms of consequence.
+
+\section{The marginal-value argument}
+
+The management question is not ``which platform is best'' but ``which
+purchase removes the most error per unit of effort, and which purchase
+removes an error that no other purchase removes''.
+
+That framing changes the answer in three ways.
+
+First, it eliminates the platforms that duplicate an existing capability.
+The thermal channel is duplicated, so it costs nothing in marginal terms to
+leave it where it is.
+
+Second, it favours the platform that closes the dominant term. For the
+energy chain, the dominant term in the small class is the density, and the
+density is a mass measurement, which is a close-encounter measurement. A
+platform that is not present at the encounter cannot deliver it at all.
+
+Third, it makes the service model worth more than the optics. The alert
+path from the risk list to the instrument costs almost nothing in
+engineering terms, and the documented failure of 2024~YR4 was that it did
+not exist.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{The marginal-value comparison: what each purchase adds that nothing
+else adds.}
+\label{tab:marginal}
+\begin{tabularx}{\textwidth}{@{}P{1.36in}P{1.20in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Purchase} & \textbf{Marginal contribution} & \textbf{Assessment} \\
+\midrule
+A thermal survey mission & none; two already exist & decline \\
+\rowcolor{panel}
+More ground adaptive optics & marginal; the constraint is opportunity, not
+aperture & decline \\
+A better radar & logarithmic in range & hold; it is indispensable for the
+few dozen \\
+\rowcolor{panel}
+An alert path & the whole routing gap, at negligible cost & do it first, and
+do it regardless of platform \\
+A lunar shape array & the shape channel and the encounter & the proposal \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\tabref{tab:marginal} is the honest form of the argument, and it contains
+two things that a lunar advocate would rather not say. The first is that the
+alert path should be built whether or not the lunar station is built, and
+that it should be built first. The second is that a better radar is
+indispensable and the lunar station does not replace it.
+
+\begin{seamnote}{The reasoning that gets the Moon chosen, and the reasoning
+that does not}
+The Moon is chosen because of a conjunction of three facts that no other
+platform shares. It is the only place where a kilometre-scale stable
+baseline can be built, which is what J1 and J3 need. It is a platform that
+can be present at a close encounter, which is what J2 and J4 need. And it is
+the only vantage that reaches the Sun-ward discovery window, which is where
+the objects still arriving at three thousand a year are found.
+
+Any one of these alone would not justify it. The thermal channel alone would
+argue against it. The discovery window alone would be a minor argument. The
+baseline alone would not close the energy chain, because the density term
+would remain. The conjunction is the argument.
+\end{seamnote}
+
+\section{Where the proposal loses}
+
+A comparison that lists only the wins is not a comparison. Three losses have
+to be recorded.
+
+The proposal loses the thermal channel outright, to Sun-Earth L1, and
+Chapter 23 shows why: the ground is brighter than the target at every
+distance of interest, and a 0.5-metre telescope at 40 kelvin with no regolith
+and no night is already funded.
+
+It loses the survey race, because it is not a survey. It does not find
+objects; it serves them, at 37 campaigns a year.
+
+And it loses the census, because the arithmetic of Chapter 25 forbids it:
+313 years to clear the known 140-metre catalogue. The station is a triage
+capability and must be sold as one.
+
+\begin{keytakeaways}
+\item The thermal channel is covered twice by funded missions and needs
+nothing.
+\item The shape channel is covered thinly and the mass channel almost not at
+all, and those are the two gaps the proposal addresses.
+\item The marginal-value argument puts the alert path first, ahead of any
+platform, because it costs almost nothing and closes the documented
+routing failure.
+\item The proposal loses the thermal channel, loses the survey race and
+cannot be a census, and the comparison says so.
+\end{keytakeaways}

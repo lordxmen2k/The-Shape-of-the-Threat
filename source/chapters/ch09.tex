@@ -1,0 +1,132 @@
+% =====================================================================
+%  Chapter 9 — Spin, \idxw{Pole} and the \idxw{Lightcurve}
+% =====================================================================
+
+\chapter{Spin, Pole and the Lightcurve}
+\label{ch:spin}
+
+The spin state of a small body is the easiest of the missing quantities to
+measure and the most consequential to get right. It is easy because a
+lightcurve\idx{Lightcurve} is cheap: point a telescope at an object, watch it brighten and
+dim. It is consequential because the spin state enters the probability chain
+in two places and the accounting chain in none.
+
+\section{What a lightcurve contains}
+
+A rotating body that is not uniformly bright shows a periodic variation in
+its apparent magnitude as it turns. The dominant period in that signal is the
+rotation period\idx{Rotation period}, with the usual ambiguity that most small bodies present two
+maxima and one minimum per rotation, so the period is usually the observed
+period doubled --- unless the observer can see both maxima and minima
+separately, which requires a lightcurve\idx{Lightcurve} with enough signal-to-noise and
+enough sampling.
+
+The amplitude of the variation constrains the projected extent of the body's
+brightness distribution, and the shape of the variation over a rotation
+constrains the body's orientation. Inverting the lightcurve\idx{Lightcurve} --- fitting a
+shape model whose predicted brightness variation matches the observed one,
+with the model free to rotate --- yields the rotation period\idx{Rotation period}, the direction
+of the spin pole\idx{Pole} in space, and a shape model of low order.
+
+That last product is the important one. The spin state is not a by-product
+of the shape inversion; it is one of its outputs, and it is the output that
+the probability chain needs.
+
+\section{The spin state enters the probability chain twice}
+
+The first entry is through \idxw{YORP}. The YORP\idx{YORP} effect is the torque exerted on a
+body by the anisotropic re-radiation of sunlight from a rotating surface
+whose normals are not uniformly distributed. The torque depends on the
+surface normals, on the surface roughness distribution, and on the angle
+between the spin axis and the direction of the sunlight. A shape that is
+wrong changes the torque.
+
+The second entry is through Yarkovsky. The Yarkovsky force is a recoil from
+the anisotropic thermal emission of the body, and it depends on the angle
+\(\gamma\) between the spin axis and the ecliptic normal through a factor
+of \(\cos\gamma\). The published sensitivity table in
+\tabref{tab:bottke} shows what that angle is worth: replacing the uniform
+distribution of \(\cos\gamma\) with a symmetric one moves the 2036 impact
+probability by a factor of 0.38, and the corresponding factor for the
+spin-axis distribution is 0.23.
+
+\section{What a shape error is worth, and where the sensitivity really is}
+
+The 2012 study of Yarkovsky and YORP\idx{YORP} for the calibration asteroid
+pseudo-Geographos, with a diameter of 2,560 metres, a bulk density of 2,500
+and a semimajor axis of 1.246 astronomical units, gives the published drift
+rates and the scaling laws that carry them:
+
+\begin{equation}
+\frac{d a}{d t} \propto \frac{1}{\rho_b D},
+\qquad
+\frac{d \omega}{d t} \propto \frac{1}{\rho_b D^{2}}.
+\label{eq:rg-scaling}
+\end{equation}
+The size dependence is explicit and it is strong. For the same bulk density,
+a halving of the diameter doubles the Yarkovsky drift rate and quadruples
+the YORP\idx{YORP} torque.
+
+The same study's sensitivity result is the one that prevents an
+over-statement of the case for shape measurement, and it should be quoted
+wherever the case is made. Gross shape differences move Yarkovsky by only
+about ten per cent for objects of the same size. What enhances Yarkovsky
+appreciably is \emph{roughness beaming}, which can raise it by tens of per
+cent and in the most favourable cases by a factor of two. YORP, by
+contrast, is the quantity that is genuinely shape-sensitive. And the
+published propagation is: a three per cent error in the diameter produces a
+three per cent error in Yarkovsky and a six per cent error in YORP.
+
+\begin{deeper}{What this chapter is not claiming}
+The book is not claiming that a resolved shape measurement buys a large
+improvement in the Yarkovsky drift. On the published evidence it does not:
+the drift is governed by the size, the density and the thermal parameter,
+and a better shape does not change the first two. What a resolved shape buys
+is the YORP term, and the spin pole\idx{Pole}, and --- as Chapter 7 established --- the
+volume that the whole accounting chain starts from. The Yarkovsky
+improvement comes from the density and the diameter, not from the shape
+alone, and the argument for the lunar platform has to be made on the
+accounting chain and on the close encounter, not on the drift.
+\end{deeper}
+
+\section{The caveat the arithmetic imposes, stated once}
+
+The scaling laws in \eqref{eq:rg-scaling} were calibrated on a body of
+2,560 metres. The class this book concerns is 50 to 140 metres, which is two
+orders of magnitude smaller, and the full Yarkovsky drift carries a thermal
+parameter \(\Theta = \Gamma\omega/(\varepsilon\sigma T_{\mathrm{SSP}}^{3})\)
+with \(T_{\mathrm{SSP}} \propto D^{-1/2}\), so the drift does not follow from
+\eqref{eq:rg-scaling} alone. **This book therefore does not extrapolate an
+absolute Yarkovsky drift across that range.** The scaling laws are used only
+as ratios to a calibrated reference, with the thermal-parameter dependence
+left explicit, and every absolute drift rate that appears in the text is a
+published value or a stated assumption.
+
+\section{The spin state is not stationary}
+
+The last piece of the spin picture is that it moves, and the 2029 Apophis
+encounter is the demonstration. Chapter 7 set out the published result: the
+gravitational perturbation of the encounter is likely to change Apophis's
+effective spin rate by a factor that could be as much as two in either
+direction, and to shift its pole\idx{Pole} by ten degrees or more, with the changes
+very sensitive to the close-approach attitude and the mass distribution.
+
+For the defender this has a sharp consequence. The spin state is an input to
+the Yarkovsky drift, and the drift is an input to the along-track position
+at a long horizon. If the spin state changes at the encounter, then a
+measurement of the spin state taken \emph{before} the encounter is a
+measurement of the wrong quantity, and the physical error it carries is
+propagated forward along with everything else.
+
+\begin{keytakeaways}
+\item A lightcurve yields the period, the pole and a low-order shape, and it
+is the cheapest of the missing measurements.
+\item The spin state enters the probability chain through YORP, which is
+genuinely shape-sensitive, and through the \(\cos\gamma\) factor in
+Yarkovsky.
+\item Gross shape differences move Yarkovsky by only about ten per cent; the
+sensitivity is in YORP and in the volume.
+\item The spin state is not stationary: the 2029 encounter is expected to
+change Apophis's spin rate by up to a factor of two and its pole by ten
+degrees or more.
+\end{keytakeaways}

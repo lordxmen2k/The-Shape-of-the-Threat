@@ -1,0 +1,135 @@
+% =====================================================================
+%  Chapter 19 — Disk-Resolved Imaging and the Close-Approach Window
+% =====================================================================
+
+\chapter{Disk-Resolved Imaging and the Close-Approach Window}
+\label{ch:disk-imaging}
+
+There are two ways to see an asteroid as a disk rather than as a point. One
+is to be near it. The other is to have an aperture large enough, or a
+baseline long enough, that its angular size is resolved from far away. The
+first is the method that has actually produced images; the second is the
+method this book is proposing. This chapter is about the first, and about
+what it costs.
+
+\section{What a resolved disk gives}
+
+A resolved image of a rotating body is worth more than a lightcurve, and the
+reason is geometric. A lightcurve gives the body's brightness as a single
+number at each time. A resolved image gives the brightness \emph{distribution}
+across the body, and from that distribution the shape follows directly.
+
+Two effects are immediately visible in a disk image and invisible in a
+lightcurve.
+
+The \emph{terminator}, the boundary between the day and night sides, shows
+the orientation of the body directly: the line across the disk from the
+brightest point to the darkest is the projection of the spin axis, and no
+model is needed to find it.
+
+The \emph{limb profile}, the shape of the boundary between the disk and the
+background, shows the shape of the body's cross-section at that epoch. A
+concave body shows a concave limb.
+
+This is why the space missions that have imaged an asteroid from close range
+have produced the field's best shape models, and why the number of such
+images is the field's most quoted scarcity: six.
+
+\section{Adaptive optics on the ground}
+
+Ground-based adaptive optics\idx{Adaptive optics} removes the atmospheric turbulence that blurs an
+image, and it extends the resolution of a large telescope to the diffraction
+limit of its aperture. For a bright near-Earth object at a close approach,
+an eight-metre telescope with adaptive optics\idx{Adaptive optics} can resolve a body of a few
+hundred metres across at a distance of a tenth of an astronomical unit.
+
+The limitation is not the resolution but the window, and the window has two
+parts.
+
+The first is the proximity, and it is unavoidable: the object's apparent
+size must exceed the resolution of the instrument, so the distance is
+bounded by the object's size.
+
+The second is the phase angle. The phase angle\idx{Phase angle} is the angle at the object
+between the direction to the Sun and the direction to the observer. At a
+close approach, the phase angle\idx{Phase angle} changes rapidly, and the illumination
+geometry determines which part of the body is visible. An observation made
+at a high phase angle\idx{Phase angle}, when the terminator\idx{Terminator} runs across the disk and most of
+the visible face is in shadow, yields a shape model with a large systematic
+uncertainty; an observation made at a low phase angle, near full
+illumination, yields a clean one.
+
+\begin{deeper}{Why the wrong phase angle wastes the encounter}
+The illumination geometry at a close approach is not under the observer's
+control in the usual way. It is fixed by the orbit. A conjunction geometry,
+in which the object passes between the Earth and the Sun, is ideal for
+imaging and poor for radar; an opposition geometry, in which the object is
+behind the Earth, is the reverse. The lesson is not that a close approach
+should be sought, but that a close approach should be \emph{anticipated}, so
+that the geometry is known in advance and the instruments can be scheduled
+for it. That is an argument for an automated alert path, not merely for a
+telescope.
+\end{deeper}
+
+\section{What the phase angle does to the inversion}
+
+The sensitivity of the shape inversion to the phase angle is the reason the
+literature is cautious about the value of a single close-range image. The
+brightness distribution across a disk depends on the illumination geometry
+as well as on the shape, and the two are not separable from a single
+observation at a single phase angle.
+
+The practical consequence is that a disk image is normally combined with a
+lightcurve, and the pair is inverted together, with the lightcurve
+constraining the rotation and the disk constraining the shape. Where the
+phase angle is favourable, the disk dominates the shape constraint; where it
+is not, the lightcurve dominates, and the answer reverts to a convex model.
+
+This is a further argument for a measurement that does not depend on the
+illumination geometry at all. An interferometric measurement of a rotating
+body measures the silhouette, and the silhouette is a geometric boundary
+rather than a brightness distribution. It is insensitive to the phase angle
+in a way that a photometric inversion is not.
+
+\section{The scarcity, and what it costs}
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{The resolved-shape record, and what each entry cost.}
+\label{tab:resolved-record}
+\begin{tabularx}{\textwidth}{@{}P{1.43in}P{1.13in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Method} & \textbf{Models} & \textbf{What it costs} \\
+\midrule
+Spacecraft fly-by & six images & a multi-billion-dollar mission per target \\
+\rowcolor{panel}
+Ground adaptive optics & a handful & a chance encounter at the right phase \\
+Lightcurve inversion & about 25,000 & a convex hull \\
+\rowcolor{panel}
+Radar & a few dozen & a radar-crossing target, and proximity \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The costs in \tabref{tab:resolved-record} are what define the opportunity.
+A fly-by image costs a mission. A ground adaptive-optics image costs a
+chance. A radar image costs a radar-crossing target and proximity. A
+lightcurve costs a telescope time, and returns a convex hull.
+
+There is no row in that table for a measurement that costs a telescope time,
+returns a resolved shape, and requires no proximity. That is the gap the
+book's proposal is aimed at, and the argument of Part V is that the
+lunar surface is the only place where that row can be filled.
+
+\begin{keytakeaways}
+\item A resolved disk gives the orientation and the limb profile directly,
+both of which a lightcurve cannot supply.
+\item The binding constraint on ground imaging is the phase angle, not the
+resolution, and the right phase has to be anticipated rather than hoped for.
+\item Six close-range images exist, some hundreds of radar models, and about
+25,000 convex lightcurve inversions.
+\item The gap is a measurement that costs telescope time, returns a resolved
+shape, and needs no proximity.
+\end{keytakeaways}
