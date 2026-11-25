@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/VYoilIsZMdpKr+hLDO9W+13R+as</id>
+  <title>arXiv Query: search_query=&amp;id_list=2210.13365&amp;start=0&amp;max_results=1</title>
+  <updated>2026-11-24T23:06:22Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=1&amp;id_list=2210.13365" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>1</opensearch:itemsPerPage>
+  <opensearch:totalResults>1</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2210.13365v1</id>
+    <title>Spin State Evolution of (99942) Apophis during its 2029 Earth Encounter</title>
+    <updated>2022-10-24T16:09:08Z</updated>
+    <link href="https://arxiv.org/abs/2210.13365v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2210.13365v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We explore the effects of the 2029 Earth encounter on asteroid (99942) Apophis' non-principal axis spin state, leveraging refined orbit, spin state, and inertia information provided by more recent optical and radar observations. Propagating the asteroids' coupled orbit and rigid body attitude dynamics through the flyby, we present the range of possible post-flyby spin states. These spin state distributions will be valuable for planning Apophis observation campaigns and spacecraft missions, most notably OSIRIS-APEX. The simulations indicate that gravitationally induced changes to the asteroid's tumbling periods and rotational angular momentum direction (pole) will likely be significant and measurable. For the current spin state and inertia estimates and their uncertainties, Apophis is likely to remain in a short axis mode (SAM) tumbling state but its effective spin rate could halve or double. Its pole is likely to shift by 10 degrees or more and increase in longitude while moving closer to the ecliptic plane. These spin state changes are very sensitive to the asteroid's close approach attitude and mass distribution. With ground-based tracking of the asteroid's spin state through the encounter, this sensitivity will help refine mass distribution knowledge. We also discuss the implications of this abrupt spin state alteration for Apophis' Yarkovsky acceleration and geophysical properties, identifying possible pathways for surface and internal changes, most notably if Apophis is a contact binary. Comparison of the pre and post-flyby inertia estimates obtained from the ground-based observations will help assess the extent of possible geophysical changes.</summary>
+    <category term="astro-ph.EP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-10-24T16:09:08Z</published>
+    <arxiv:primary_category term="astro-ph.EP"/>
+    <author>
+      <name>C. J. Benson</name>
+    </author>
+    <author>
+      <name>D. J. Scheeres</name>
+    </author>
+    <author>
+      <name>M. Brozovic</name>
+    </author>
+    <author>
+      <name>S. Chesley</name>
+    </author>
+    <author>
+      <name>P. Pravec</name>
+    </author>
+    <author>
+      <name>P. Scheirich</name>
+    </author>
+    <arxiv:doi>10.1016/j.icarus.2022.115324</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1016/j.icarus.2022.115324" title="doi"/>
+  </entry>
+</feed>
