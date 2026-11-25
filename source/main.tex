@@ -1,0 +1,53 @@
+% =====================================================================
+%  The Shape of the Threat
+%  Characterising Near-Earth Objects for Impact Accountability,
+%  and the Case for a Lunar Surface Array
+%  Gerald Enrique Nelson Mc Kenzie — Tico Internet LLC — 2026 First Edition
+%  Master file. Typeset with XeLaTeX; index built with makeindex.
+% =====================================================================
+\documentclass[11pt,twoside,openany]{book}
+
+\input{preamble}
+
+% ---- Full-bleed page helper --------------------------------------------
+% The cover artwork must be page 1 of this PDF, edge to edge.
+\newcommand{\fullbleed}[1]{%
+  \AddToShipoutPictureBG*{%
+    \AtPageLowerLeft{\includegraphics[width=\paperwidth,height=\paperheight]{#1}}}%
+}
+
+\begin{document}
+
+% =====================================================================
+%  COVER — page 1, full bleed
+% =====================================================================
+% The cover is physical page 1 and carries no folio.
+\setcounter{page}{1}
+\fullbleed{../figures/cover_front.pdf}
+\thispagestyle{empty}
+\null
+\newpage
+
+% Front matter: roman numerals beginning at i on the half-title.
+\pagestyle{plain}
+\pagenumbering{roman}
+\setcounter{page}{1}
+\input{frontmatter}
+% The body restarts the page numbering in arabic, and the section numbering
+% that the front matter switched off comes back on.
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\setcounter{secnumdepth}{2}
+\input{body}
+\input{backmatter}
+
+% =====================================================================
+%  BACK COVER — final page, full bleed
+% =====================================================================
+\clearpage
+\fullbleed{../figures/cover_back.pdf}
+\thispagestyle{empty}
+\null
+\ClearShipoutPictureBG
+
+\end{document}

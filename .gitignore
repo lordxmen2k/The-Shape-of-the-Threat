@@ -1,0 +1,29 @@
+# LaTeX build products
+source/*.aux
+source/*.idx
+source/*.ind
+source/*.ilg
+source/*.log
+source/*.out
+source/*.toc
+source/*.lof
+source/*.lot
+source/*.fls
+source/*.fdb_latexmk
+source/*.synctex.gz
+source/.wordcount
+source/generated.tex
+source/generated/
+source/main.pdf
+source/cover_front.pdf
+source/cover_back.pdf
+*.pyc
+__pycache__/
+.DS_Store
+
+# review artefacts
+.review/
+figures/fig_*.png
+figures/cover_*preview.png
+figures/cover_*_view.png
+figures/preview/

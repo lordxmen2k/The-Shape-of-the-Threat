@@ -1,0 +1,395 @@
+% =====================================================================
+%  The Shape of the Threat — front matter
+%  Half-title, title page, copyright, dedication, epigraph, contents,
+%  figures, tables, management summary, preface, how to use this book.
+% =====================================================================
+
+% ---- Half-title ---------------------------------------------------------
+\pagestyle{plain}
+\clearpage
+\thispagestyle{empty}
+\vspace*{1.15in}
+{\sffamily\fontsize{22}{26}\selectfont\color{txt}\bookTitle\par}
+\vspace{10pt}
+{\sffamily\fontsize{11}{14}\selectfont\color{txtdim}\bookSubtitle\par}
+\vfill
+{\sffamily\small\color{txtdim}\bookAuthor\par}
+\vspace{6pt}
+{\sffamily\small\color{txtdim}\bookImprint\par}
+\clearpage
+
+% ---- Title page ---------------------------------------------------------
+\clearpage
+\thispagestyle{empty}
+\vspace*{0.75in}
+{\sffamily\fontsize{26}{30}\selectfont\bfseries\color{txt}\bookTitle\par}
+\vspace{12pt}
+{\sffamily\fontsize{12}{16}\selectfont\color{accent}\bookSubtitle\par}
+\vspace{22pt}
+\noindent{\color{accent}\rule{\textwidth}{1.8pt}}\par
+\vspace{18pt}
+{\sffamily\large\color{txt}\bookAuthor\par}
+\vspace{8pt}
+{\sffamily\small\color{txtdim}\bookImprint, publisher\par}
+\vspace{4pt}
+{\sffamily\small\color{txtdim}\bookEdition\par}
+\vspace{18pt}
+{\sffamily\small\color{txtdim}
+Facts current as of \bookFactsDate.\par}
+\vfill
+\clearpage
+
+% ---- Copyright page -----------------------------------------------------
+\clearpage
+\thispagestyle{plain}
+\noindent{\sffamily\bfseries\color{txt}\bookTitle}\par
+\noindent{\sffamily\small\color{txtdim}\bookSubtitle}\par
+\vspace{14pt}
+\noindent\rule{\textwidth}{0.4pt}\par
+\vspace{10pt}
+\noindent Copyright \textcopyright\ \bookCopyright\ \bookAuthor. All rights reserved.\par
+\vspace{6pt}
+\noindent \bookImprint, publisher.\par
+\vspace{10pt}
+\noindent\textbf{Edition:} \bookEdition.\par
+\vspace{6pt}
+\noindent\textbf{Subject headings:} Near-Earth asteroids --- Observational
+techniques; Planetary defense; Asteroid shape; Impact energy; Torino scale;
+Interferometry; Optical ranging; Lunar surface instrumentation; Space mission
+planning.\par
+\vspace{10pt}
+\noindent\textbf{Licence.} This work is published under the Apache License,
+Version 2.0. The complete licence text is available at
+\href{https://www.apache.org/licenses/LICENSE-2.0}{\code{apache.org/licenses/LICENSE-2.0}}.
+The book may be copied, modified and redistributed, including for commercial
+purposes, provided that this notice and the attribution required by the
+licence are retained.\par
+\vspace{10pt}
+\noindent\textbf{DOI:} \href{https://doi.org/\bookDOI}{\texttt{\bookDOI}}\par
+\vspace{10pt}
+\noindent\textbf{ISBN:} 978-1-0000-0000-0 (placeholder; to be assigned on
+publication).\par
+\vspace{10pt}
+\noindent\textbf{Source materials.} The sources of this book, the build
+scripts, the figures and the research ledger behind it are published at
+\texttt{github.com/lordxmen2k/The-Shape-of-the-Threat}.\par
+\vspace{10pt}
+\noindent\textbf{What this book is.} This book is an argument about where a
+near-Earth object characterisation capability should sit inside the
+planetary-defence architecture, and about what it would cost and buy. It works
+from primary sources, carries its own quantitative analysis, and states the
+limits of that analysis plainly. It does not describe a spacecraft that has
+been flown, a station that has been built, or a decision that has been taken.
+It does not cover deflection, and it does not cover the economics of a
+planetary-defence programme.\par
+\vspace{10pt}
+\noindent\rule{\textwidth}{0.4pt}\par
+\vspace{8pt}
+{\sffamily\small\color{txtdim}Typeset in XeLaTeX with Outfit, DejaVu Sans Mono
+and Fira Math. First edition, 2026.\par}
+\clearpage
+
+% ---- Dedication ---------------------------------------------------------
+\clearpage
+\thispagestyle{empty}
+\vspace*{2.6in}
+\begin{center}
+{\sffamily\itshape\color{txtdim}
+For the objects that were found in time to be looked at,\\[6pt]
+and were not looked at.\par}
+\end{center}
+\vfill
+\clearpage
+
+% ---- Epigraph -----------------------------------------------------------
+\clearpage
+\thispagestyle{plain}
+\begin{epigraph}
+No automated system currently alerts physical characterization sites.
+
+\rule{1.6in}{0.3pt}
+
+NASA, \emph{Lessons Learned from the 2024 YR4 Impact Scenario}, 2025
+\end{epigraph}
+\vfill
+\clearpage
+
+% ---- Contents -----------------------------------------------------------
+\clearpage
+\thispagestyle{plain}
+\markboth{Contents}{Contents}
+\tableofcontents
+\addcontentsline{toc}{chapter}{Contents}
+\clearpage
+
+% ---- Figures ------------------------------------------------------------
+\clearpage
+\thispagestyle{plain}
+\markboth{Figures}{Figures}
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+\clearpage
+
+% ---- Tables -------------------------------------------------------------
+\clearpage
+\thispagestyle{plain}
+\markboth{Tables}{Tables}
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+\clearpage
+
+% ---- Management summary -------------------------------------------------
+% The front matter's unnumbered chapters must not number their sections.
+\setcounter{secnumdepth}{-1}
+\chapter*{Management Summary}
+\addcontentsline{toc}{chapter}{Management Summary}
+\markboth{Management Summary}{Management Summary}
+\thispagestyle{plain}
+
+This page is the book in the form a decision-maker needs it. The remainder of
+the volume derives, tests and qualifies every statement below.
+
+\section*{The question}
+
+The near-Earth object catalogue contains more than forty thousand objects. A
+minority of them carry a physical account good enough to size them. The
+planetary-defence community can therefore say, for most known objects, roughly
+how much energy would be released on impact --- and only roughly. The
+question this book asks is where in the planetary-defence architecture a
+measurement capability should be placed so that the objects that matter are
+accounted for rather than merely catalogued.
+
+\section*{The answer}
+
+A fixed surface station on the Moon, carrying a kilometre-scale optical
+interferometric array, operated as a \emph{named-target characterisation
+service} rather than as a survey. It is not the only answer, and on two of the
+five jobs it loses to platforms that already exist. It is the answer for the
+one job that nothing else is assigned to do: measuring the resolved shape of a
+specific object, at the moment when that object's size decides whether an
+impact is regional or local.
+
+\section*{The rule}
+
+For a target with a bracketed diameter, density, distance and encounter epoch:
+compute the baseline required for four samples across the diameter, which is
+four wavelengths divided by the angular diameter; check the baseline is
+buildable at the candidate site; check the astrometric precision implied by
+that baseline against the along-track budget at the encounter horizon; and
+select the platform only if the \emph{physical} uncertainty dominates the
+encounter probability. That last condition is the substantive one. Where the
+astrometric term dominates, characterisation does not shorten the clock, and
+the lunar station does not earn its place.
+
+\section*{The three numbers that decide it}
+
+\begin{itemize}
+\item \textbf{748 metres.} The baseline a 60~metre object at 0.1 astronomical
+units requires for four samples across its diameter. The concept literature's
+100~metre baseline puts a 50~metre object at the same distance at 0.45 of a
+fringe spacing across its diameter: an astrometric centroid, not a shape
+imager.
+\item \textbf{8.66 metres.} The range error of an Earth-Moon two-station
+measurement of 2024~YR4 at the distance of its discovery-night close approach,
+at one milliarcsecond of differential astrometry. No ground optical facility
+ranges a non-cooperative target.
+\item \textbf{37 campaigns per year.} The service rate of one fixed station,
+against 342 new 140-metre-class objects a year and 11,725 known. The station
+cannot be a census. It must be a triage.
+\end{itemize}
+
+\section*{What it does not do}
+
+It does not find objects. It does not carry the thermal-infrared channel,
+which Sun-Earth L1 does better and more cheaply. It does not survey. It does
+not deflect. It does not clear the catalogue: at 37 campaigns a year, covering
+the known 140-metre class would take 313 years, and the arithmetic says so
+before any hardware is designed.
+
+\begin{keytakeaways}
+\item The gap for the hazard-relevant class is accounting, not discovery, and
+the book shows the arithmetic that says so.
+\item The lunar claim is narrowed to the only thing the Moon does that nothing
+else is assigned to do, and the claim is made quantitative rather than
+rhetorical.
+\item The platform-selection rule returns a platform per target, not an
+architecture, and it declines to select the Moon whenever the astrometric term
+dominates.
+\item The service rate is stated against the demand, so the station is
+proposed as a triage capability and not as a census.
+\end{keytakeaways}
+\clearpage
+
+% ---- Preface ------------------------------------------------------------
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+\markboth{Preface}{Preface}
+\thispagestyle{plain}
+
+A near-Earth object is a line in a catalogue: a designation, an orbit, an
+absolute magnitude, and a probability of impact that is usually negligible. The
+line carries no size, no mass, no shape and no spin state, because none of
+those have been measured for most of the objects on it. That is not a criticism
+of the surveys that built the catalogue. It is a statement of what a catalogue
+is for.
+
+The planetary-defence community has inherited a second problem from this one,
+and it is the problem this book is about. The hazard scale that the community
+uses to decide whether an object deserves attention has two axes: the
+probability that the object strikes, and the energy it would release. The
+first axis is measured, by an astrometric machinery that has grown
+extraordinarily well. The second axis is inferred, from a size assumption and
+a density assumption, and it is good to within a factor of three. A factor of
+three in energy is the difference between an event that empties a regional
+hospital and one that levels a city.
+
+Shape sits at the head of both chains. The accounting chain runs shape to
+volume to mass to energy to hazard class. The probability chain runs shape to
+surface normals to YORP torque to spin state to Yarkovsky drift to along-track
+displacement to keyhole. The two chains are usually presented separately, and
+they are usually presented as separate programmes. They are the same
+measurement, and the measurement is the same observation: a resolved image of
+a rotating body.
+
+\section*{What the book does}
+
+It takes the accountability chain apart and attaches an error budget to every
+link, so that the reader can see which measurement would buy the most. It
+takes the probability chain apart and shows why the physical term is
+negligible at seven years and dominant at thirty. It re-derives, from the
+concept study's own published table, the baseline that an asteroid shape
+imager actually requires, and finds that the baseline in the literature is
+sized for stellar astrometry rather than for asteroid imaging. It then works
+through the lunar case honestly, including the two channels where the Moon
+loses, and closes with a rule that returns a platform for a given target
+rather than a preferred architecture.
+
+It also does something the literature does not do: it tests the proposal
+against the historical record. The counterfactual chapter asks what a lunar
+capability would have measured in the cases that are already on the record ---
+2008~TC3, 2019~OK, 2024~YR4, Apophis --- and answers with the JPL close
+approach and first-observation records rather than with an assertion.
+
+\section*{What the book will not do}
+
+It will not recommend a mission. The platform-selection rule is the
+deliverable, and the rule is indifferent to the answer.
+
+It will not claim novelty of hardware. The concept is twenty-three years old
+and heavily worked. The novelty claimed here is of position and of
+quantification: the first published argument for where in the
+planetary-defence architecture a lunar platform earns its place, together with
+the error budgets and the rule that decide it.
+
+It will not treat a model as a measurement. Where the book uses a thermal
+model, a beaming parameter or a scaling law, the error band is stated and the
+places where the extrapolation does not follow are named.
+
+\section*{On the sources}
+
+Every identifier in this book was resolved against a registry --- the arXiv
+API, the Crossref bibliographic query, the NASA Technical Reports Server
+citation service, or the NASA/JPL Small-Body Database --- and the resolved
+title was compared against the title intended to be cited before the reference
+was used. The discovery statistics are the NASA Center for Near Earth Object
+Studies series as published for 22 November 2026, and the close-approach
+records are the JPL Small-Body Database Close Approach Data service. Where a
+resolution failed, the claim was removed rather than re-sourced from memory.
+
+The sources are institutional, peer-reviewed, or official. Where the evidence
+is thin, the book says so, and where two sources disagree, both are carried
+with their definitions rather than reconciled by preference.
+
+\begin{keytakeaways}
+\item Shape is the shared upstream term of the accounting chain and the
+probability chain, and it is the book's centre of gravity.
+\item The baseline an asteroid shape imager needs is a kilometre-scale
+baseline, not a hundred-metre one, and the literature's hundred-metre figures
+are sized for stellar astrometry.
+\item The lunar claim survives only when it is narrowed to what the Moon does
+that no space observatory is currently assigned to do.
+\item Every identifier was resolved against a registry and checked against the
+intended title before use.
+\end{keytakeaways}
+
+% ---- How to use this book ------------------------------------------------
+\chapter*{How to Use This Book}
+\addcontentsline{toc}{chapter}{How to Use This Book}
+\markboth{How to Use This Book}{How to Use This Book}
+\thispagestyle{plain}
+
+The book has a spine, and reading it out of order is possible but wasteful.
+The seven parts are a sequence, not a taxonomy.
+
+\textbf{Part I} establishes the gap. What a catalogue entry cannot tell you,
+the two axes of the hazard scale, the difference between the detection mandate
+and the characterisation mandate, the size of the population that is discovered
+but not accounted for, and 2024~YR4 as the case where the response failed.
+
+\textbf{Part II} is the physics of accountability: what has to be measured to
+turn a catalogue entry into an energy, and how much error each link carries.
+
+\textbf{Part III} is the probability chain, where the same shape measurement
+turns into a Yarkovsky drift and a keyhole probability, and where the
+sensitivity of the answer to physical error grows with the horizon.
+
+\textbf{Part IV} is the measurement science: projections and the uniqueness
+theorems, lightcurve inversion and its convex hull, radar and the fourth-power
+wall, resolved imaging and the close-approach window, and interferometry with
+its visibility and over-resolution limits.
+
+\textbf{Part V} is the Moon: what the vantage gives, what the baseline gives
+and what it does not, the thermal and power budget, dust and night, and the
+architecture and service model that follow.
+
+\textbf{Part VI} is the comparison and the rule: the space telescopes, bistatic
+radar, the portfolio decision, the counterfactual ledger against the
+historical record, the platform-selection rule, the worked cases, and the
+honest novelty claim.
+
+\textbf{Part VII} states what a lunar station could and could not be made
+responsible for, and what would falsify the argument.
+
+A reader who wants the argument rather than the detail should read Chapters 1,
+4, 10, 14, 20, 22, 28, 29 and 30, and skip the rest. A reader who is
+commissioning a capability should read them in order and use the glossary and
+the index.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{The book's own computed figures, and what each one is for.}
+\label{tab:figures}
+\begin{tabularx}{\textwidth}{@{}P{2.57in}Y@{}}
+\toprule
+\rowcolor{panel}
+\textbf{Figure} & \textbf{The question it answers} \\
+\midrule
+Known near-Earth objects & how large the catalogue is, and where its growth
+has gone \\
+\rowcolor{panel}
+The 140 m class & how many objects are catalogued but not accounted for \\
+Baseline for four samples & what baseline an asteroid shape imager actually
+requires \\
+\rowcolor{panel}
+Samples across the diameter & where the concept literature's hundred-metre
+baseline fails \\
+The mid-infrared channel & why the thermal channel is closed to the Moon \\
+\rowcolor{panel}
+The accountability ladder & what each link of the energy chain is worth \\
+Two-station range error & what the Earth-Moon baseline buys at close approach \\
+\rowcolor{panel}
+2024 YR4 & how far model choice alone moves the energy \\
+The 2036 keyhole & how far a physical assumption moves the probability \\
+\rowcolor{panel}
+Along-track error & when the physical term overtakes the astrometric one \\
+The sky turns more slowly & what the lunar rotation rate buys \\
+\rowcolor{panel}
+The Sun-ward lead time & what the lunar survey geometry adds \\
+Baseline scales & what has been achieved against what is required \\
+\rowcolor{panel}
+Surface brightness & why the lunar sky is not the constraint on the optical
+channel \\
+\bottomrule
+\end{tabularx}
+\end{table}
